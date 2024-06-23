@@ -1,0 +1,16 @@
+<!-- <div>
+    <input type="text" [(ngModel)]="search" (keyup.enter)="onSpread()">
+    <button class="btn btn-primary" (click)="onSpread()">Search</button>
+</div> -->
+
+<div class="my-5 d-flex justify-content-center container" >
+    <mat-form-field class="w-100 " >
+        <mat-label >Search</mat-label>
+        <input   matInput placeholder="City / Owner" type="search" aria-label="search" [(ngModel)]="search" (keyup.enter)="onSpread()">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+</div>  
+
+<!-- <input class="form-control me-2" type="search" placeholder="" aria-label="Search" >         -->
+    <!-- <button mat-stroked-button (click)="onSpread()">search</button> -->

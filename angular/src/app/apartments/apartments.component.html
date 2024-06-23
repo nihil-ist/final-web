@@ -1,0 +1,136 @@
+<app-navbar></app-navbar>
+
+<div class="paddingx mb-5">
+  <h1 class="mt-5 fw-bold">browse our apartments</h1>
+    <app-search (spread)="spreadProccess($event)"></app-search>
+  <script>
+  </script>
+    <!-- <hr class="my-5 pb-5"> -->
+    @if (srch=="") {
+      <div class="row row-cols-1 row-cols-md-3 g-4  " style="margin: 0 auto;">
+        @for (apartment of apartmentsService.apartments; track apartment;let i=$index;) {
+          <div class="col col-sm-12 col-md-12 col-xl-6 col-xxl-4 mb-4"  style="margin: 0 auto;">
+          <div class="card" style="width: 19rem; margin: 0 auto; border: none; background: none;">
+                <div id="carouselApartments{{i}}" class="carousel slide" >
+                  <div class="carousel-indicators">
+                    <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                  </div>
+                
+                  <a [routerLink]="['/apartment', i]" routerLinkActive="router-link-active" >
+
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img [src]="apartment.src + '/1.jpg'" [ngStyle]="imgCarousel" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img [src]="apartment.src + '/2.jpg'" [ngStyle]="imgCarousel" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img [src]="apartment.src + '/3.jpg'" [ngStyle]="imgCarousel" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img [src]="apartment.src + '/4.jpg'" [ngStyle]="imgCarousel" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img [src]="apartment.src + '/5.jpg'" [ngStyle]="imgCarousel" alt="...">
+                    </div>
+                  </div>
+                </a>
+
+                  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                
+                <a class="nodeco" [routerLink]="['/apartment', i]" routerLinkActive="router-link-active" >
+
+              <div class="card-body">
+                  <h6 class="card-text">{{apartment.name}}</h6>
+                  <h6 class="text-muted">Hosted by {{apartment.owner}}</h6>
+                  <h6>{{apartment.city}}</h6>
+                  <h6>{{apartment.price}} USD<span class="fw-normal"> night</span></h6>
+                </div>
+                </a>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    @else {
+      <div class="row row-cols-1 row-cols-md-3 g-4  " style="margin: 0 auto;">
+        @if (searchExists(srch, apartmentsService.apartments)) {
+          @for (apartment of apartmentsService.apartments; track apartment;let i = $index;) {
+            @if (searchMatches(srch,apartment.owner) || searchMatches(srch,apartment.city)) {
+
+              <div class="col col-sm-12 col-md-6 col-xl-5 col-xxl-4 mb-4"  style="margin: 0 auto;">
+                <div class="card" style="width: 19rem; margin: 0 auto; border: none; background: none;">
+                  <div id="carouselApartments{{i}}" class="carousel slide" >
+                    <div class="carousel-indicators">
+                      <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                      <button type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    </div>    
+                    <a [routerLink]="['/apartment', i]" routerLinkActive="router-link-active" >
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img [src]="apartment.src + '/1.jpg'" [ngStyle]="imgCarousel" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img [src]="apartment.src + '/2.jpg'" [ngStyle]="imgCarousel" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img [src]="apartment.src + '/3.jpg'" [ngStyle]="imgCarousel" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img [src]="apartment.src + '/4.jpg'" [ngStyle]="imgCarousel" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img [src]="apartment.src + '/5.jpg'" [ngStyle]="imgCarousel" alt="...">
+                          </div>
+                        </div>
+                      </a>
+
+                        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselApartments' + i" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <a class="nodeco" [routerLink]="['/apartment', i]" routerLinkActive="router-link-active" >
+
+                    <div class="card-body">
+                      <h6 class="card-text">{{apartment.name}}</h6>
+                      <h6 class="text-muted">Hosted by {{apartment.owner}}</h6>
+                      <h6>{{apartment.city}}</h6>
+                      <h6>{{apartment.price}} USD<span class="fw-normal"> night</span></h6>
+                    </div>
+                    </a>
+                </div>
+              </div>
+            }
+            
+        }
+      } @else {
+        <ng-container *ngIf="!searchExists(srch, apartmentsService.apartments) ">
+          {{openDialog()}}
+        </ng-container>
+      }
+
+      </div>
+
+    }
+</div>

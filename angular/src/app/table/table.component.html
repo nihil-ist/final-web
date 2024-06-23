@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+
+  <div class="paddingx">
+    <h1 class="mt-5 fw-bold">bookings</h1>
+  </div>
+
+  @if (reservationsExist()) {
+    <div class="paddingx py-5">
+
+    <h1 class="restitle mb-5 fw-bold">past reservations</h1>
+    <div class="pb-5">
+      <table class="table">
+        <thead>
+          <tr class="headertable">
+            <th>Arrival Date</th>
+            <th>Departure Date</th>
+            <th>Arrival Time</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Price</th>
+            <th>Address</th>
+            <th>Total Nights</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of pastReservations">
+            <td>{{ reservation.arrivalDate | date }}</td>
+            <td>{{ reservation.departureDate | date }}</td>
+            <td>{{ reservation.arrivalTime }}</td>
+            <td>{{ reservation.name }}</td>
+            <td>{{ reservation.phone }}</td>
+            <td>{{ reservation.email }}</td>
+            <td>{{ reservation.price }}</td>
+            <td>{{ reservation.address }}</td>
+            <td>{{ reservation.nights }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+    
+    <!-- Future Reservations Table -->
+    <div class="py-5 greySection paddingx">
+      <h1 class="restitle my-5 fw-bold">future reservations</h1>
+      <div class="mb-5">
+        <table class="table greySection">
+          <thead>
+            <tr class="headertable greySection">
+              <th>Arrival Date</th>
+              <th>Departure Date</th>
+              <th>Arrival Time</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Price</th>
+              <th>Address</th>
+              <th>Total Nights</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let reservation of futureReservations">
+              <td>{{ reservation.arrivalDate | date }}</td>
+              <td>{{ reservation.departureDate | date }}</td>
+              <td>{{ reservation.arrivalTime }}</td>
+              <td>{{ reservation.name }}</td>
+              <td>{{ reservation.phone }}</td>
+              <td>{{ reservation.email }}</td>
+              <td>{{ reservation.price }}</td>
+              <td>{{ reservation.address }}</td>
+              <td>{{ reservation.nights }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    
+  
+  } @else {
+    <div class="paddingx">
+      <h1 class="mb-5">Oops!</h1>
+      <h2>We couldn't find any registered reservation.</h2>
+    </div>
+  
+    
+  }
+

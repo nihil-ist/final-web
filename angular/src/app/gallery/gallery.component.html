@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div class="paddingx py-5">
+    <h1 class="pb-3 fw-bold">gallery</h1>
+    <h2 class="pb-5">see some of the photos taken by our users</h2>
+    <div class="masonry-container">
+        <ngx-masonry [options]="{ fitWidth: true }">
+          <div ngxMasonryItem class="masonry-item" *ngFor="let item of masonryItems">
+            <img src="{{item.src}}" class="m-1" alt="" width="220">
+          </div>
+        </ngx-masonry>
+      </div>
+
+</div>

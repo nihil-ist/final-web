@@ -1,0 +1,17 @@
+.mat-button{
+    color: white;
+ }
+ 
+ .spacer{
+   flex: 1 1 auto;
+ }
+
+ .example-full-width {
+    position: relative;
+    top: 10px;
+ }
+
+ .pointer:hover {
+   cursor: pointer;
+ }
+

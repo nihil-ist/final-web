@@ -1,0 +1,25 @@
+
+
+<div class="sticky-top" style="background-color: white;">
+    <mat-toolbar color="primary" style="border-top-left-radius: 25px; border-top-right-radius: 25px; " class="shadow-lg"> 
+        &nbsp;&nbsp;
+        <div class="pointer" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+            <img src="assets/img/logo.png" alt="" width="50">
+            &nbsp;
+            <span>the apartment</span>  
+        </div>
+        
+        <div class="spacer"></div>
+
+        <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a>  
+        <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active" >apartments</a>  
+        <a mat-button [routerLink]="['/reservations']" routerLinkActive="router-link-active" >bookings</a>
+        <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active" >gallery</a>  
+        <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active" >about</a>
+        &nbsp;&nbsp;
+
+    </mat-toolbar>
+</div>
+
+
+

@@ -1,0 +1,20 @@
+th, td {
+    text-align: center;
+}
+
+th {
+    font-size: 1.2em;
+    line-height: 4rem;
+}
+
+td {
+    line-height: 4rem;
+}
+
+.greySection, .greySection th, .greySection td{
+    background-color: #F7F7F7;
+}
+
+.restitle {
+    font-size: 2em;
+}

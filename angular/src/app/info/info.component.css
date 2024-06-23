@@ -1,0 +1,32 @@
+.table-borderless {
+    border: none;
+}
+
+.table-borderless td {
+    /* padding: 0.5rem; */
+    vertical-align: middle;
+}
+
+.logo-cell {
+    vertical-align: middle !important;
+}
+
+.description-row {
+    line-height: 0.8; 
+}
+
+td {
+    font-size: 1.1rem;
+}
+
+tr {
+    margin-bottom: 100px;
+}
+
+.text-sm {
+    font-size: 0.9rem; 
+}
+
+.spacer {
+    height: 1rem;
+}
