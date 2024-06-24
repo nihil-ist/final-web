@@ -45,6 +45,8 @@
 
                 <hr class="mb-5 mt-5">
 
+                
+
                 <div class="row">
                     <div class="col">
                         <p class="lead fs-4"><strong>Located in:</strong> {{apartment.address}}</p>
@@ -66,10 +68,26 @@
                     </mat-card-content>
                     
                   </mat-card>
+                 
                     <div class="mt-5">
                         <app-map [apartamento]="apartment"></app-map>
                     </div>
-                  
+
+                     <!-- pipe  -->
+                     <mat-card class="example-card shadow mt-4" style="border-radius: 5%;">
+                        <mat-card-content>
+                          <h3 class="mb-4" style="text-align: left;">Nearby Places</h3>
+                          <ul class="features-list">
+                            <li *ngFor="let place of apartment.nearbyPlaces| keyvalue">
+                                
+                              <p><i class="fas fa-map-marker-alt"></i>
+
+                                {{ place.key }} </p> <p class="text2-stats">{{ place.value }}</p>
+                            </li>
+                          </ul>
+                        </mat-card-content>
+                    </mat-card>
+                      
 
             </div>
 
