@@ -1,0 +1,26 @@
+<div class="">
+  
+    <div class="container">
+      <form id="contactus" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h3>Datos personales</h3>
+
+        <fieldset>
+            <input placeholder="email" type="text" tabindex="1" name=email  required
+              autofocus formControlName="email">
+          </fieldset>
+        <fieldset>
+          <input placeholder="usuario" type="text" tabindex="1" name=username  required
+            autofocus formControlName="username">
+        </fieldset>
+        <fieldset>
+          <input placeholder="contraseña" type="password" tabindex="3" name="password" 
+            required formControlName="password">
+        </fieldset>
+        <fieldset>
+          <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button>
+        </fieldset>
+        
+      </form>
+    </div>
+    
+  </div>
