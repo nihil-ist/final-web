@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoggedService } from '../services/logged.service';
 
 @Component({
   selector: 'app-loginn',
@@ -17,7 +18,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './loginn.component.css',
 })
 export class LoginnComponent {
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(private fb: FormBuilder, private auth: AuthService, private logged: LoggedService) {}
 
   form: FormGroup = this.fb.group({
     email: ['', Validators.required],
@@ -33,6 +34,7 @@ export class LoginnComponent {
       this.auth.login(rawForm.email, rawForm.contrasenya).subscribe({
         next: () => {
           console.log('Logged in!');
+          this.logged.loggedIn();
           // Handle the logic here
         },
         error: (error: any) => {

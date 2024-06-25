@@ -7,16 +7,17 @@ import { SearchComponent } from '../search/search.component';
 import { ApartmentsService } from '../apartmentsService/apartments.service';
 import { filter } from 'rxjs';
 import { CurrencyService } from '../service-divisa/currency.service';
+import { LoggedService } from '../services/logged.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatInputModule, RouterModule, SearchComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatInputModule, RouterModule, SearchComponent, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent  {
-
 
   srch:string="";
   spreadProccess(search:string){
@@ -32,7 +33,7 @@ export class NavbarComponent  {
     return false;
   }
 
-  constructor(public currencyService: CurrencyService) {}
+  constructor(public currencyService: CurrencyService, public logged: LoggedService) {}
 
   selectCurrency(event: Event) {
     const target = event.target as HTMLSelectElement;
