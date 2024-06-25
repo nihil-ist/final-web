@@ -6,17 +6,17 @@ import { Injectable } from '@angular/core';
 export class LoggedService {
 
 
-  private isLogged = false;
+  private loggedUser = '';
   constructor() { }
 
-  loggedIn(){
-    this.isLogged = true;
+  loggedIn(name: string){
+    this.loggedUser = name;
   }
   logout(){
-    this.isLogged = false;
+    this.loggedUser = '';
   }
 
   getIsLogged(){
-    return this.isLogged;
+    return this.loggedUser;
   }
 }

@@ -35,6 +35,8 @@ export class NavbarComponent  {
 
   constructor(public currencyService: CurrencyService, public logged: LoggedService) {}
 
+  username = this.logged.getIsLogged();
+
   selectCurrency(event: Event) {
     const target = event.target as HTMLSelectElement;
     const currency = target.value;
