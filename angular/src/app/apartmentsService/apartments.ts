@@ -19,15 +19,7 @@ export const APARTMENTS: Apartment[] = [
             'Central Park': '10 min by taxi',
             'Times Square': '20 min by subway'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+       
           
     },
     {
@@ -48,17 +40,7 @@ export const APARTMENTS: Apartment[] = [
             'Barclays Center': '15 min on foot',
             'Brooklyn Botanic Garden': '8 min by taxi'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
-          
+         
     },
     {
         id: 3,
@@ -80,15 +62,7 @@ export const APARTMENTS: Apartment[] = [
             'Zurich Hauptbahnhof': 'Central station, 10 min by car',
             'Paradeplatz': '5 min on foot'
           },
-          reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+         
           
           
     },
@@ -110,15 +84,7 @@ export const APARTMENTS: Apartment[] = [
             'Jet d\'Eau': '15 min by tram',
             'Palais des Nations': '20 min by bus'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+        
           
           
     },
@@ -140,15 +106,7 @@ export const APARTMENTS: Apartment[] = [
             'Champs-Élysées': '15 min on foot',
             'Musée d\'Orsay': '10 min by taxi'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+        
           
           
     },
@@ -170,16 +128,7 @@ export const APARTMENTS: Apartment[] = [
             'Mercado Roma': '10 min on foot',
             'Chapultepec Castle': '15 min by taxi'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
+        
           
     },
     {
@@ -200,17 +149,7 @@ export const APARTMENTS: Apartment[] = [
             'Seattle Art Museum': '5 min on foot',
             'CenturyLink Field': '20 min on foot'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
-          
+        
     },
     {
         id: 8,
@@ -230,16 +169,7 @@ export const APARTMENTS: Apartment[] = [
             'Tokyo Skytree': '20 min by subway',
             'Shinjuku Gyoen National Garden': '25 min by subway'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
+        
           
     },
     {
@@ -260,15 +190,7 @@ export const APARTMENTS: Apartment[] = [
             'Myeongdong Shopping Street': '15 min on foot',
             'Dongdaemun Design Plaza': '20 min by subway'
           },
-          reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+         
           
           
     },
@@ -290,17 +212,7 @@ export const APARTMENTS: Apartment[] = [
             'Museum Ludwig': '15 min by tram',
             'Rhine River': '20 min on foot'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
-          
+        
     },
     {
         id: 11,
@@ -320,16 +232,7 @@ export const APARTMENTS: Apartment[] = [
             'Pacha Ibiza': '15 min by taxi',
             'Es Vedrà': '30 min by boat'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
-          
+        
           
     },
     {
@@ -350,15 +253,7 @@ export const APARTMENTS: Apartment[] = [
             'Grand Canal': '5 min on foot',
             'Peggy Guggenheim Collection': '20 min on foot'
         },
-        reviews: [
-            'Great place to stay!',
-            'Very clean and comfortable.',
-            'Host was very helpful.',
-            'Location was perfect.',
-            'Would stay here again.',
-            'The kitchen was well-equipped.',
-            'Amazing view from the balcony.'
-          ]
+        
           
           
     }
