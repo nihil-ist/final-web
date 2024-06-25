@@ -57,7 +57,7 @@
                   <h6 class="card-text">{{apartment.name}}</h6>
                   <h6 style="color: rgba(255, 255, 255, 0.7)">Hosted by {{apartment.owner}}</h6>
                   <h6>{{apartment.city}}</h6>
-                  <h6>{{apartment.price}} USD<span class="fw-normal"> night</span></h6>
+                  <h6>${{priceInCurrentCurrency}} <span class="fw-normal"> night</span></h6>
                 </div>
                 </a>
             </div>
@@ -116,7 +116,7 @@
                       <h6 class="card-text">{{apartment.name}}</h6>
                       <h6 class="text-muted">Hosted by {{apartment.owner}}</h6>
                       <h6>{{apartment.city}}</h6>
-                      <h6>{{apartment.price}} USD<span class="fw-normal"> night</span></h6>
+                      <h6>${{priceInCurrentCurrency}}<span class="fw-normal"> night</span></h6>
                     </div>
                     </a>
                 </div>
