@@ -1,0 +1,25 @@
+
+.carousel-inner {
+    text-align: center;
+    color: #f44336;
+}
+
+
+@media (min-width: 992px) {
+    .carousel-inner {
+        font-size: 1.5rem; 
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .carousel-inner {
+        font-size: 1.2rem; 
+    }
+}
+
+
+@media (max-width: 767px) {
+    .carousel-inner {
+        font-size: 1rem; 
+    }
+}

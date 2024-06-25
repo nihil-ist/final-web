@@ -1,25 +1,77 @@
-
-
+/* General styles for .banner */
 .banner {
-    background-image: url('../../assets/img/nyc.gif');
-    background-size: cover; 
-    background-position: center;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center; 
-    text-align: center;
-    color: white; 
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    padding: 20vw 5%; 
+  background-image: url('../../assets/img/nyc.gif');
+  background-size: cover; 
+  background-position: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+  color: white; 
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 20vw 5%; 
+}
+
+.banner mat-card-header {
+  background-color: transparent;
+  padding: 0; 
+}
+
+
+
+@media (max-width: 600px) {
+  .banner {
+      padding: 30vw 5%;
+      font-size: 30px;
+      font-style: bold;
   }
+  .banner h1 {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+      padding: 25vw 5%;
+  }
+
+  .banner h1 {
+      font-size: .5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .banner {
+      padding: 20vw 5%;
+  }
+
+  .banner h1 {
+      font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .banner {
+      padding: 15vw 5%;
+      font-size: 6rem;
+  }
+
+  .banner h1 {
+      font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 1400px) {
   
-  .banner mat-card-header {
-    background-color: transparent;
-    padding: 0; 
+  .banner h1 {
+      font-size: 3.75rem;
   }
-  
-  .banner mat-card-title {
-    font-size: 4rem;
-    font-weight: bold;
+}
+
+@media (min-width: 1401px) {
+
+  .banner h1 {
+      font-size: 3rem;
   }
+}
