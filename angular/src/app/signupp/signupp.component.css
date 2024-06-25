@@ -34,14 +34,6 @@ input:focus {
     color: white
 }
 
-input:focus > label::after {
-    background-color: aqua !important;
-}
-
-input::after label {
-    background-color: aqua !important;
-}
-
-label {
+.form-label::after{
     background-color: transparent !important;
 }
