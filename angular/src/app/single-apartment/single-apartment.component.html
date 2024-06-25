@@ -54,7 +54,7 @@
                 <mat-card class="example-card shadow" style=" border-radius: 5%; background-color: #2d2a2e; color: white;">
                     
                     <mat-card-content>
-                        <h1 class="fs-3 mt-4">${{ priceInCurrentCurrency}}<span class="text-muted">night</span></h1>
+                        <h1 class="fs-3 mt-4">{{ apartment.priceInCurrentCurrency | currency:currencyService.getCurrentCurrency().symbol }} <span class="">night</span></h1>
                         
                         <hr class="my-4 mx-5">
                         <div class="text-center">

@@ -21,13 +21,14 @@ import { passwordMismatchValidator } from '../password-mismatch.validator';
   styleUrl: './signupp.component.css',
 })
 export class SignuppComponent {
+// [x: string]: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   errorMessage: string | null = null;
 
   form: FormGroup = this.fb.group({
     email: ['', Validators.required],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     fullname: ['', Validators.required],
     username: ['', Validators.required],

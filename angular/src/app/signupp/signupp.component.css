@@ -37,3 +37,23 @@ input:focus {
 .form-label::after{
     background-color: transparent !important;
 }
+
+.input:focus * {
+    outline: 1px solid white;
+    border: 1px solid white;
+}
+
+.custom-border:focus {
+    border-color: #fff; 
+    /* box-shadow: 0 0 0 0.25rem rgba(244, 67, 54, 0.25); */
+    outline: none; 
+    box-shadow: none;
+}
+
+label {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.error-message {
+    color:#F44336;
+}

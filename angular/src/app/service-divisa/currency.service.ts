@@ -16,10 +16,10 @@ export class CurrencyService {
         value = 1;
         break;
       case 'MXN':
-        value = 20;
+        value = 18.04;
         break;
       case 'EUR':
-        value = 0.89;
+        value = 0.93;
         break;
       default:
         value = 1; 
