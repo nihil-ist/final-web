@@ -25,8 +25,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let reservation of pastReservations">
-            <td>{{ reservation.arrivalDate | date }}</td>
-            <td>{{ reservation.departureDate | date }}</td>
+            //uso pipe date
+            <td>{{ reservation.arrivalDate | date:'MM/dd/yyyy' }}</td>
+            <td>{{ reservation.departureDate | date:'MM/dd/yyyy' }}</td>
             <td>{{ reservation.arrivalTime }}</td>
             <td>{{ reservation.name }}</td>
             <td>{{ reservation.phone }}</td>
@@ -61,15 +62,15 @@
           </thead>
           <tbody>
             <tr *ngFor="let reservation of futureReservations">
-              <td>{{ reservation.arrivalDate | date }}</td>
-              <td>{{ reservation.departureDate | date }}</td>
+              <td>{{ reservation.arrivalDate | date:'MM/dd/yyyy' }}</td>
+              <td>{{ reservation.departureDate | date:'MM/dd/yyyy' }}</td>
               <td>{{ reservation.arrivalTime }}</td>
               <td>{{ reservation.name }}</td>
               <td>{{ reservation.phone }}</td>
               <td>{{ reservation.email }}</td>
               <td>{{ reservation.price }}</td>
               <td>{{ reservation.address }}</td>
-              <td>{{ reservation.nights }}</td>
+              <td>{{ reservation.nights | number }}</td>
             </tr>
           </tbody>
         </table>
