@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+
+<div class="paddingx">
+    <form id="contactus" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 class="my-5">login</h1>
+      <fieldset>
+        <input placeholder="Email" type="text" tabindex="1" name=correo  required
+          autofocus formControlName="email">
+      </fieldset>
+      <fieldset>
+        <input placeholder="Contraseña" type="password" tabindex="3" name="contrasenya" 
+          required formControlName="contrasenya">
+      </fieldset>
+      <fieldset>
+        <button  type="submit"  id="contactus-submit" data-submit="...Sending">Login</button>
+      </fieldset>
+    </form>
+  </div>
+  

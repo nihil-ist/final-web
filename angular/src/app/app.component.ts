@@ -13,12 +13,13 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { InfoComponent } from './info/info.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
+import { LoginnComponent } from './loginn/loginn.component';
 declare const bootstrap: any;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, BannerComponent, FooterComponent, HomeComponent, VideopipeComponent, ApartmentsComponent, SearchComponent, CarouselComponent, InfoComponent, FormComponent, TableComponent],
+  imports: [RouterOutlet, NavbarComponent, BannerComponent, FooterComponent, HomeComponent, VideopipeComponent, ApartmentsComponent, SearchComponent, CarouselComponent, InfoComponent, FormComponent, TableComponent, LoginnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 
