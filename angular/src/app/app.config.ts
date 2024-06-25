@@ -11,14 +11,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideHttpClient } from '@angular/common/http';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(),
+  providers: [provideRouter(routes), provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync(),
+    ([
+      provideFirebaseApp(() => initializeApp(environment.firebase)),
+      provideAuth(() => getAuth()),
+    ]),
     importProvidersFrom([
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule
-    ]),
-    provideAuth(() => getAuth()),
+     ])
   ]
 };

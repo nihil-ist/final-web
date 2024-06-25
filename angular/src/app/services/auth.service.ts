@@ -7,18 +7,13 @@ import {
   signInWithEmailAndPassword,
   signInWithPhoneNumber,
   updateProfile,
-  User
 } from '@angular/fire/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable, from, map } from 'rxjs';
-// import { User } from '../models/user.model';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(private firebaseAuth: Auth) {}
 
   getAuth(): Auth {

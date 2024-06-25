@@ -7,15 +7,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import {MatButtonModule} from '@angular/material/button'; 
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-signupp',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, NavbarComponent, MatButtonModule, RouterModule],
   templateUrl: './signupp.component.html',
-  styleUrls: ['./signupp.component.css']
+  styleUrl: './signupp.component.css',
 })
-export class SignupComponent {
+export class SignuppComponent {
   constructor(private fb: FormBuilder, private auth: AuthService) {}
 
   form: FormGroup = this.fb.group({
