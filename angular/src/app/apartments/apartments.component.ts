@@ -82,22 +82,26 @@ export class ApartmentsComponent implements OnInit, OnDestroy{
   lookForAppartment(id:number){
     this.router.navigate(['/apartment',id]);
   }
+
+
   // pipe en accion
-  apartments: Apartment[] = []; // Arreglo para almacenar los apartamentos obtenidos
-  priceInCurrentCurrency: string = '';
+  apartments: Apartment[] = []; 
   private currencySubscription: Subscription | null = null;
-  
+  priceInCurrentCurrency: number = 0; 
+
   ngOnInit(): void {
-    // Suscripción al cambio de divisa
+    // Ssubs cambio divisa
     this.currencySubscription = this.currencyService.currency$.subscribe(currency => {
       this.updatePriceInCurrentCurrency();
     });
 
-    // Obtener la lista de apartamentos al inicializar el componente
+    
     this.apartmentsService.getApartments().subscribe(apartments => {
-      this.apartments = apartments; // Asignar la lista de apartamentos obtenidos
+      this.apartments = apartments; 
       if (this.apartments.length > 0) {
-        this.updatePriceInCurrentCurrency(); // Actualizar el precio en la divisa actual si hay apartamentos
+        
+        this.apartment = this.apartments[0];
+        this.updatePriceInCurrentCurrency(); 
       }
     });
   }
@@ -110,15 +114,17 @@ export class ApartmentsComponent implements OnInit, OnDestroy{
   }
 
   updatePriceInCurrentCurrency() {
-    // Ejemplo de actualización del precio en la divisa actual
-    const originalPrice = parseFloat(this.apartments[0].price.replace('$', '').trim()); // Suponiendo que obtienes el precio del primer apartamento
-    const currentCurrency = this.currencyService.getCurrentCurrency();
-    const newPrice = originalPrice * currentCurrency.value;
-    this.priceInCurrentCurrency = `${newPrice.toFixed(2)} ${currentCurrency.symbol}`;
+    if (this.apartment) {
+      // Obtener el precio original del apartamento
+      const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+      // Obtener la divisa actual desde el servicio CurrencyService
+      const currentCurrency = this.currencyService.getCurrentCurrency();
+      // Calcular el nuevo precio en la divisa actual
+      const newPrice = originalPrice * currentCurrency.value;
+      // Asignar el nuevo precio 
+      this.priceInCurrentCurrency = newPrice;
+    }
   }
-
-  
-
 
 }
 
