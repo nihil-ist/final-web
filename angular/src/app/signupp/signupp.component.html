@@ -1,24 +1,48 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-  <div class="p-5 d-flex flex-column" id="_2bg">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h1 class="text-center mb-5 fw-bold mt-3">Sign Up</h1>
-      <div class="form-floating mb-5 mx-5">
-        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
-        <label for="email">Email</label>
-      </div>
-      <div class="form-floating mb-5 mx-5">
-        <input type="text" class="form-control" id="username" placeholder="Usuario" formControlName="username">
-        <label for="username">Usuario</label>
-      </div>
-      <div class="form-floating mb-5 mx-5">
-        <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
-        <label for="password">Contraseña</label>
-      </div>
-      <div class="text-center mb-3">
-        <button type="submit" class="btn btn-dark" style="background-color: #F44336; color: white; border: none;">Registro</button>
-      </div>
-    </form>
+<div class="paddingx">
+  
+    <div class="">
+      <form id="contactus" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1 class="my-5">sign up</h1>
+
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+            <div class="form-floating mb-5">
+                <input id="email" placeholder="email" class="form-control" type="text" tabindex="1" name=email  required autofocus formControlName="email">
+                <label for="email">email</label>
+            </div>
+            <div class="form-floating mb-5">
+                <input id="username" placeholder="username" class="form-control" type="text" tabindex="1" name=username  required autofocus formControlName="username">
+                <label for="username">username</label>
+            </div>
+
+            <div class="form-floating mb-5">
+                <input id="password" class="form-control" placeholder="contraseña" type="password" tabindex="3" name="password" required formControlName="password">
+                <label for="password">password</label>
+            </div>
+            
+            <div class="form-floating mb-5">
+                <input id="confirmPassword" class="form-control" placeholder="Confirm Password" type="password" tabindex="4" name="confirmPassword" required formControlName="confirmPassword">
+                <label for="confirmPassword">confirm password</label>
+            </div>
+
+            <div *ngIf="form.errors?.['passwordMismatch'] && form.get('confirmPassword')?.touched" class="error-message">
+              passwords do not match
+            </div>
+
+            <div class="form-floating mb-5">
+                <input id="fullname" class="form-control" placeholder="fullname" type="text" tabindex="3" name="fullname" required formControlName="fullname">
+                <label for="fullname">full name</label>
+            </div>
+
+            <div class="text-center mb-5">
+                <button id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">register</button>
+            </div>  
+
+          <!-- <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button> -->
+        
+      </form>
+    </div>
+    
   </div>
-</div>

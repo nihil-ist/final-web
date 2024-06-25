@@ -18,6 +18,30 @@
 
 input, textarea {
     background: none;
-    border: none;
+    border: none; 
+    border-radius: 0;
     border-bottom: 1px solid #F44336;
+    color: white
+}
+
+input:focus > label {
+    background: none;
+    color: white
+}
+
+input:focus {
+    background: none;
+    color: white
+}
+
+input:focus > label::after {
+    background-color: aqua !important;
+}
+
+input::after label {
+    background-color: aqua !important;
+}
+
+label {
+    background-color: transparent !important;
 }
