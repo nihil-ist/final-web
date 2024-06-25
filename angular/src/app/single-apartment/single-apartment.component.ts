@@ -49,7 +49,7 @@ export class SingleApartmentComponent implements OnInit, OnDestroy{
   priceInCurrentCurrency: string = '';
   private currencySubscription: Subscription | null = null;
 
-  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog, private currencyService: CurrencyService){
+  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog, public currencyService: CurrencyService){
     this.activatedRoute.params.subscribe(params=>
       {
         this.apartment = apartmentService.apartments[params['id']];
@@ -78,17 +78,23 @@ export class SingleApartmentComponent implements OnInit, OnDestroy{
     }
   }
     
+  // updatePriceInCurrentCurrency() {
+  //   // Obtener el precio original del apartamento
+  //   const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+
+  //   // Obtener la divisa actual desde el servicio CurrencyService
+  //   const currentCurrency = this.currencyService.getCurrentCurrency();
+
+  //   // Calcular el nuevo precio en la divisa actual
+  //   const newPrice = originalPrice * currentCurrency.value;
+
+  //   // Formatear el precio con el símbolo de la divisa
+  //   this.priceInCurrentCurrency = `${newPrice.toFixed(2)} ${currentCurrency.symbol}`;
+  // }
+
   updatePriceInCurrentCurrency() {
-    // Obtener el precio original del apartamento
-    const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
-
-    // Obtener la divisa actual desde el servicio CurrencyService
     const currentCurrency = this.currencyService.getCurrentCurrency();
-
-    // Calcular el nuevo precio en la divisa actual
-    const newPrice = originalPrice * currentCurrency.value;
-
-    // Formatear el precio con el símbolo de la divisa
-    this.priceInCurrentCurrency = `${newPrice.toFixed(2)} ${currentCurrency.symbol}`;
+      const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+      this.apartment.priceInCurrentCurrency = (originalPrice * currentCurrency.value).toFixed(2);
   }
 }

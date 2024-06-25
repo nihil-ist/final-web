@@ -30,7 +30,7 @@ export class ApartmentsComponent implements OnInit, OnDestroy{
   @ViewChild('carouselTitle', { static: true }) carouselElement: ElementRef<HTMLElement> | null = null;
   @Input() apartment!:Apartment;
 
-  constructor(public apartmentsService:ApartmentsService, public dialog: MatDialog, private router:Router, private currencyService: CurrencyService){
+  constructor(public apartmentsService:ApartmentsService, public dialog: MatDialog, private router:Router, public currencyService: CurrencyService){
 
   }
   
@@ -113,17 +113,24 @@ export class ApartmentsComponent implements OnInit, OnDestroy{
     }
   }
 
+  // updatePriceInCurrentCurrency() {
+  //   if (this.apartment) {
+  //     // Obtener el precio original del apartamento
+  //     const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+  //     // Obtener la divisa actual desde el servicio CurrencyService
+  //     const currentCurrency = this.currencyService.getCurrentCurrency();
+  //     // Calcular el nuevo precio en la divisa actual
+  //     const newPrice = originalPrice * currentCurrency.value;
+  //     // Asignar el nuevo precio 
+  //     this.priceInCurrentCurrency = newPrice;
+  //   }
+  // }
   updatePriceInCurrentCurrency() {
-    if (this.apartment) {
-      // Obtener el precio original del apartamento
-      const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
-      // Obtener la divisa actual desde el servicio CurrencyService
-      const currentCurrency = this.currencyService.getCurrentCurrency();
-      // Calcular el nuevo precio en la divisa actual
-      const newPrice = originalPrice * currentCurrency.value;
-      // Asignar el nuevo precio 
-      this.priceInCurrentCurrency = newPrice;
-    }
+    const currentCurrency = this.currencyService.getCurrentCurrency();
+    this.apartments.forEach(apartment => {
+      const originalPrice = parseFloat(apartment.price.replace('$', '').trim());
+      apartment.priceInCurrentCurrency = (originalPrice * currentCurrency.value).toFixed(2);
+    });
   }
 
 }

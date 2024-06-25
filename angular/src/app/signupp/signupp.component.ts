@@ -9,7 +9,7 @@ import {
 import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import {MatButtonModule} from '@angular/material/button'; 
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { passwordMismatchValidator } from '../password-mismatch.validator';
 
@@ -21,13 +21,14 @@ import { passwordMismatchValidator } from '../password-mismatch.validator';
   styleUrl: './signupp.component.css',
 })
 export class SignuppComponent {
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+// [x: string]: any;
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   errorMessage: string | null = null;
 
   form: FormGroup = this.fb.group({
     email: ['', Validators.required],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     fullname: ['', Validators.required],
     username: ['', Validators.required],
@@ -46,6 +47,7 @@ export class SignuppComponent {
       .subscribe({
         next: () => {
           console.log('User registered successfully');
+          this.router.navigate(['/signin']);
         },
         error: (err) => {
           this.handleError(err);

@@ -7,6 +7,7 @@ export interface Apartment{
     address:string;
     src:string;
     price:string;
+    priceInCurrentCurrency?: string;
     rating:number;
     latitud:number;
     longitud:number;

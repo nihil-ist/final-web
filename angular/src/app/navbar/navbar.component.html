@@ -15,7 +15,7 @@
         
         <div class="custom-select-wrapper">
           <i class="fas fa-globe select-icon"></i>
-          <select class="custom-select" (change)="selectCurrency($event)">
+          <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
             <option value="USD">USD</option>
             <option value="MXN">MXN</option>
             <option value="EUR">EUR</option>
