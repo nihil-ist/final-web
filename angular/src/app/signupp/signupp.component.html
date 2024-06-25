@@ -8,33 +8,39 @@
 
         <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-        <fieldset>
-            <input placeholder="email" type="text" tabindex="1" name=email  required
-              autofocus formControlName="email">
-        </fieldset>
-        <fieldset>
-          <input placeholder="usuario" type="text" tabindex="1" name=username  required
-            autofocus formControlName="username">
-        </fieldset>
-        <fieldset>
-          <input placeholder="contraseña" type="password" tabindex="3" name="password" 
-            required formControlName="password">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Confirm Password" type="password" tabindex="4" name="confirmPassword" required formControlName="confirmPassword">
-            <div *ngIf="form.errors?.['passwordMismatch'] && form.get('confirmPassword')?.touched" class="error-message">
-              Passwords do not match.
+            <div class="form-floating mb-5">
+                <input id="email" placeholder="email" class="form-control" type="text" tabindex="1" name=email  required autofocus formControlName="email">
+                <label for="email">email</label>
             </div>
-          </fieldset>
-        <fieldset>
-            <input placeholder="fullname" type="text" tabindex="3" name="fullname" 
-              required formControlName="fullname">
-          </fieldset>
-        <fieldset>
-            <button id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">register</button>
+            <div class="form-floating mb-5">
+                <input id="username" placeholder="username" class="form-control" type="text" tabindex="1" name=username  required autofocus formControlName="username">
+                <label for="username">username</label>
+            </div>
+
+            <div class="form-floating mb-5">
+                <input id="password" class="form-control" placeholder="contraseña" type="password" tabindex="3" name="password" required formControlName="password">
+                <label for="password">password</label>
+            </div>
+            
+            <div class="form-floating mb-5">
+                <input id="confirmPassword" class="form-control" placeholder="Confirm Password" type="password" tabindex="4" name="confirmPassword" required formControlName="confirmPassword">
+                <label for="confirmPassword">confirm password</label>
+            </div>
+
+            <div *ngIf="form.errors?.['passwordMismatch'] && form.get('confirmPassword')?.touched" class="error-message">
+              passwords do not match
+            </div>
+
+            <div class="form-floating mb-5">
+                <input id="fullname" class="form-control" placeholder="fullname" type="text" tabindex="3" name="fullname" required formControlName="fullname">
+                <label for="fullname">full name</label>
+            </div>
+
+            <div class="text-center mb-5">
+                <button id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">register</button>
+            </div>  
 
           <!-- <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button> -->
-        </fieldset>
         
       </form>
     </div>
