@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'; 
@@ -6,6 +6,7 @@ import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router
 import { SearchComponent } from '../search/search.component';
 import { ApartmentsService } from '../apartmentsService/apartments.service';
 import { filter } from 'rxjs';
+import { CurrencyService } from '../service-divisa/currency.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +16,7 @@ import { filter } from 'rxjs';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent  {
+
 
   srch:string="";
   spreadProccess(search:string){
@@ -30,4 +32,12 @@ export class NavbarComponent  {
     return false;
   }
 
+  constructor(public currencyService: CurrencyService) {}
+
+  selectCurrency(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const currency = target.value;
+    this.currencyService.setCurrency(currency);
+  }
+  
 }

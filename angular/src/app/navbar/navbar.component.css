@@ -15,3 +15,22 @@
    cursor: pointer;
  }
 
+
+ .custom-select {
+  appearance: none;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.custom-select option {
+  background-color:transparent; 
+  color: white; 
+}
+
+/* Estilo del dropdown y hover */
+.custom-select-wrapper select:focus {
+  background-color: #F44336; 
+  color: white; 
+  border: none;
+}
