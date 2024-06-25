@@ -1,15 +1,16 @@
-
 <form (ngSubmit)="submitForm()" #form="ngForm" class="m-5">
-    
+
     <div class="form-group mb-4">
         <label for="arrivalDate">Arrival Date</label>
 
-        <input type="date" matInput   class="form-control" id="arrivalDate" name="arrivalDate" (change)="saveDate($event)" required>
+        <input type="date" matInput class="form-control" id="arrivalDate" name="arrivalDate" (change)="saveDate($event)"
+            required>
     </div>
-        <div class="form-group mb-4">
+    <div class="form-group mb-4">
         <label for="departureDate">Departure Date</label>
-        <input type="date" class="form-control" id="departureDate" name="departureDate" (change)="saveDepartureDate($event)" required>
-        </div>
+        <input type="date" class="form-control" id="departureDate" name="departureDate"
+            (change)="saveDepartureDate($event)" required>
+    </div>
     <div class="form-group mb-4">
         <label for="name">Full Name</label>
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="reservation.name" required>
@@ -24,34 +25,32 @@
     </div>
     <div class="form-group mb-4">
         <label for="price">Price</label>
-        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="reservation.price" placeholder="{{apartment.price}} USD night"   disabled>
+        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="reservation.price"
+            placeholder="{{apartment.price}} USD night" disabled>
     </div>
     <div class="form-group mb-5">
         <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" name="address"  [(ngModel)]="reservation.address" placeholder="{{apartment.address}}" disabled>
+        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="reservation.address"
+            placeholder="{{apartment.address}}" disabled>
     </div>
     <div class="form-group mb-4">
         <mat-grid-list cols="4" [gutterSize]="'1%'">
             @for (tile of tiles; track tile) {
-              <mat-grid-tile
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background-image]="'url('+apartment.src+tile.src+')'"
-                [style.background-size]="'cover'"
+            <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows"
+                [style.background-image]="'url('+apartment.src+tile.src+')'" [style.background-size]="'cover'"
                 [style.margin]="'0px'"
-                [ngStyle]="{'border-radius': tile.src == '/1.jpg' ? '1vw 0 0 1vw' : tile.src == '/3.jpg' ? '0 1vw 0 0' : tile.src == '/5.jpg' ? '0 0 1vw 0' : ''}"
-                >
+                [ngStyle]="{'border-radius': tile.src == '/1.jpg' ? '1vw 0 0 1vw' : tile.src == '/3.jpg' ? '0 1vw 0 0' : tile.src == '/5.jpg' ? '0 0 1vw 0' : ''}">
 
-              </mat-grid-tile>
+            </mat-grid-tile>
             }
         </mat-grid-list>
         <!-- <img [src]="apartment.src + '/1.jpg'" alt="Imagen" class="img-fluid w-100" > -->
     </div>
     <div class="d-flex justify-content-between mt-5">
-        <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button data-bs-dismiss="modal" aria-label="Close" color="primary" >Close</button>
-        <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button color="primary" type="submit" >Submit</button>
+        <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button data-bs-dismiss="modal" aria-label="Close"
+            color="primary">Close</button>
+        <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button color="primary"
+            type="submit">Submit</button>
     </div>
 
 </form>
-
-
