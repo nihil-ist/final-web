@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <div class="container">
     <div class="p-5 d-flex flex-column" id="_2bg">
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
@@ -15,9 +15,9 @@
           <textarea class="form-control" id="description" placeholder="description" style="height: 100px" formControlName="description"></textarea>
           <label for="description">Description</label>
         </div>
-        <div class="text-center mb-3">
-          <button type="submit" class="btn btn-dark" [disabled]="!formulario.valid">Submit</button>
-        </div>
+          <div class="text-center mb-3">
+            <button type="submit" class="btn btn-dark" [disabled]="!formulario.valid" style="background-color: #F44336; color: white; border: none;">Submit</button>
+          </div>
       </form>
     </div>
   </div>

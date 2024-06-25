@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { MailService } from './mail.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { BannerComponent } from '../banner/banner.component';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule,HttpClientModule],
+  imports: [ReactiveFormsModule,HttpClientModule,NavbarComponent,BannerComponent,MatToolbarModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
   providers : [MailService]
