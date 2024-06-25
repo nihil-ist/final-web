@@ -12,7 +12,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$80",
         rating: 4.2,
         longitud: 40.72463418034214,
-        latitud:-73.99882430360019
+        latitud:-73.99882430360019,
+        nearbyPlaces: {
+            'Washington Square Park': '5 min on foot',
+            'Brooklyn Bridge': '15 min by subway',
+            'Central Park': '10 min by taxi',
+            'Times Square': '20 min by subway'
+        }
+          
     },
     {
         id: 2,
@@ -25,7 +32,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$68",
         rating: 4.8,
         longitud: 40.67133330731358,
-        latitud:-73.9451984342862
+        latitud:-73.9451984342862,
+        nearbyPlaces: {
+            'Brooklyn Museum': '10 min on foot',
+            'Prospect Park': '5 min by subway',
+            'Barclays Center': '15 min on foot',
+            'Brooklyn Botanic Garden': '8 min by taxi'
+        }
+          
     },
     {
         id: 3,
@@ -38,7 +52,16 @@ export const APARTMENTS: Apartment[] = [
         price: "$102",
         rating: 4.5,
         longitud: 47.38014591401019,
-        latitud: 8.524896281425212
+        latitud: 8.524896281425212,
+        nearbyPlaces: {
+            'Zurich Airport (ZRH)': '15-20 min by car',
+            'Lindenhof Park': 'Panoramic views, 3 min on foot',
+            'Swiss National Museum': 'Exhibitions, 7 min by car',
+            'Märtplatz Zurich': 'Near river, 5 min on foot',
+            'Zurich Hauptbahnhof': 'Central station, 10 min by car',
+            'Paradeplatz': '5 min on foot'
+          }
+          
     },
     {
         id: 4,
@@ -51,7 +74,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$110",
         rating: 4.3,
         longitud: 46.20920941623444,
-        latitud:6.127513296699077
+        latitud:6.127513296699077,
+        nearbyPlaces: {
+            'Lake Geneva': '5 min on foot',
+            'Old Town Geneva': '10 min on foot',
+            'Jet d\'Eau': '15 min by tram',
+            'Palais des Nations': '20 min by bus'
+        }
+          
     },
     {
         id: 5,
@@ -64,7 +94,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$79",
         rating: 4.7,
         longitud: 48.87121644213378,
-        latitud:2.3245133968548797
+        latitud:2.3245133968548797,
+        nearbyPlaces: {
+            'Place de la Concorde': '5 min on foot',
+            'Louvre Museum': '10 min on foot',
+            'Champs-Élysées': '15 min on foot',
+            'Musée d\'Orsay': '10 min by taxi'
+        }
+          
     },
     {
         id: 6,
@@ -77,7 +114,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$52",
         rating: 4.1,
         longitud: 19.412978980504686,
-        latitud: -99.17892395813908
+        latitud: -99.17892395813908,
+        nearbyPlaces: {
+            'Parque México': '5 min on foot',
+            'Avenida Ámsterdam': '3 min on foot',
+            'Mercado Roma': '10 min on foot',
+            'Chapultepec Castle': '15 min by taxi'
+        }
+          
     },
     {
         id: 7,
@@ -90,7 +134,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$80",
         rating: 4.4,
         longitud: 47.615285353935995,
-        latitud:-122.34228101856104
+        latitud:-122.34228101856104,
+        nearbyPlaces: {
+            'Pike Place Market': '10 min on foot',
+            'Space Needle': '15 min by tram',
+            'Seattle Art Museum': '5 min on foot',
+            'CenturyLink Field': '20 min on foot'
+        }
+          
     },
     {
         id: 8,
@@ -103,7 +154,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$75",
         rating: 4.9,
         longitud: 35.73228119201864,
-        latitud:139.7785652384839
+        latitud:139.7785652384839,
+        nearbyPlaces: {
+            'Ueno Park': '10 min by subway',
+            'Asakusa Temple': '15 min by subway',
+            'Tokyo Skytree': '20 min by subway',
+            'Shinjuku Gyoen National Garden': '25 min by subway'
+        }
+          
     },
     {
         id: 9,
@@ -116,7 +174,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$90",
         rating: 4.6,
         longitud: 37.562371632478175,
-        latitud: 126.97387339624146
+        latitud: 126.97387339624146,
+        nearbyPlaces: {
+            'Gyeongbokgung Palace': '5 min by taxi',
+            'N Seoul Tower': '10 min by taxi',
+            'Myeongdong Shopping Street': '15 min on foot',
+            'Dongdaemun Design Plaza': '20 min by subway'
+          }
+          
     },
     {
         id: 10,
@@ -129,7 +194,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$84",
         rating: 4.2,
         longitud: 50.9565359955173,
-        latitud: 6.932130125816848
+        latitud: 6.932130125816848,
+        nearbyPlaces: {
+            'Cologne Cathedral': '10 min on foot',
+            'Hohenzollern Bridge': '5 min on foot',
+            'Museum Ludwig': '15 min by tram',
+            'Rhine River': '20 min on foot'
+          }
+          
     },
     {
         id: 11,
@@ -142,7 +214,14 @@ export const APARTMENTS: Apartment[] = [
         price: "$125",
         rating: 4.8,
         longitud: 38.90841270163723,
-        latitud:1.4222807098013042
+        latitud:1.4222807098013042,
+        nearbyPlaces: {
+            'Ibiza Old Town (Dalt Vila)': '5 min on foot',
+            'Talamanca Beach': '10 min on foot',
+            'Pacha Ibiza': '15 min by taxi',
+            'Es Vedrà': '30 min by boat'
+          }
+          
     },
     {
         id: 12,
@@ -155,6 +234,13 @@ export const APARTMENTS: Apartment[] = [
         price: "$140",
         rating: 4.4,
         longitud: 45.43620676886931,
-        latitud:12.3206321966551
+        latitud:12.3206321966551,
+        nearbyPlaces: {
+            'St. Mark\'s Basilica': '10 min by waterbus',
+            'Rialto Bridge': '15 min on foot',
+            'Grand Canal': '5 min on foot',
+            'Peggy Guggenheim Collection': '20 min on foot'
+        }
+          
     }
 ];
