@@ -10,6 +10,17 @@
         </div>
         
         <div class="spacer"></div>
+        
+        <!-- pipe de divisas -->
+        
+        <div class="custom-select-wrapper">
+          <i class="fas fa-globe select-icon"></i>
+          <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
+            <option value="USD">USD</option>
+            <option value="MXN">MXN</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
 
         <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a>  
         <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active" >apartments</a>  
@@ -19,6 +30,7 @@
         <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active" >contact us</a>
         <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active" >sign in</a>
         <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active" >sign up</a>
+        <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{username}}</a>
         &nbsp;&nbsp;
     </mat-toolbar>
 </div>

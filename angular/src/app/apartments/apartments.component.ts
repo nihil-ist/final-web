@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SearchComponent } from '../search/search.component';
 import { ApartmentsService } from '../apartmentsService/apartments.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Apartment } from '../interfaces/apartment';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatButtonModule} from '@angular/material/button'; 
@@ -14,23 +14,26 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
+import { CurrencyService } from '../service-divisa/currency.service';
 
 @Component({
   selector: 'app-apartments',
   standalone: true,
-  imports: [SearchComponent, NavbarComponent, FooterComponent, CommonModule, MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, RouterModule],
+  imports: [SearchComponent, NavbarComponent, FooterComponent, CommonModule, MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, RouterModule, CurrencyPipe],
   templateUrl: './apartments.component.html',
   styleUrl: './apartments.component.css'
 })
-export class ApartmentsComponent {
+export class ApartmentsComponent implements OnInit, OnDestroy{
 
   @ViewChild('carouselTitle', { static: true }) carouselElement: ElementRef<HTMLElement> | null = null;
+  @Input() apartment!:Apartment;
 
-  constructor(public apartmentsService:ApartmentsService, public dialog: MatDialog, private router:Router){
+  constructor(public apartmentsService:ApartmentsService, public dialog: MatDialog, private router:Router, public currencyService: CurrencyService){
 
   }
+  
   
   srch:string="";
   dialogboolean: boolean = true;
@@ -79,6 +82,57 @@ export class ApartmentsComponent {
   lookForAppartment(id:number){
     this.router.navigate(['/apartment',id]);
   }
+
+
+  // pipe en accion
+  apartments: Apartment[] = []; 
+  private currencySubscription: Subscription | null = null;
+  priceInCurrentCurrency: number = 0; 
+
+  ngOnInit(): void {
+    // Ssubs cambio divisa
+    this.currencySubscription = this.currencyService.currency$.subscribe(currency => {
+      this.updatePriceInCurrentCurrency();
+    });
+
+    
+    this.apartmentsService.getApartments().subscribe(apartments => {
+      this.apartments = apartments; 
+      if (this.apartments.length > 0) {
+        
+        this.apartment = this.apartments[0];
+        this.updatePriceInCurrentCurrency(); 
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribirse para evitar fugas de memoria
+    if (this.currencySubscription) {
+      this.currencySubscription.unsubscribe();
+    }
+  }
+
+  // updatePriceInCurrentCurrency() {
+  //   if (this.apartment) {
+  //     // Obtener el precio original del apartamento
+  //     const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+  //     // Obtener la divisa actual desde el servicio CurrencyService
+  //     const currentCurrency = this.currencyService.getCurrentCurrency();
+  //     // Calcular el nuevo precio en la divisa actual
+  //     const newPrice = originalPrice * currentCurrency.value;
+  //     // Asignar el nuevo precio 
+  //     this.priceInCurrentCurrency = newPrice;
+  //   }
+  // }
+  updatePriceInCurrentCurrency() {
+    const currentCurrency = this.currencyService.getCurrentCurrency();
+    this.apartments.forEach(apartment => {
+      const originalPrice = parseFloat(apartment.price.replace('$', '').trim());
+      apartment.priceInCurrentCurrency = (originalPrice * currentCurrency.value).toFixed(2);
+    });
+  }
+
 }
 
 @Component({

@@ -54,7 +54,7 @@
                 <mat-card class="example-card shadow" style=" border-radius: 5%; background-color: #2d2a2e; color: white;">
                     
                     <mat-card-content>
-                        <h1 class="fs-3 mt-4">{{apartment.price}} USD <span style="color: rgba(255, 255, 255, 0.7);">night</span></h1>
+                        <h1 class="fs-3 mt-4">{{ apartment.priceInCurrentCurrency | currency:currencyService.getCurrentCurrency().symbol }} <span class="">night</span></h1>
                         
                         <hr class="my-4 mx-5">
                         <div class="text-center">
@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- pipe  -->
-                <mat-card class="example-card shadow mt-4" style="border-radius: 5%;">
+                <mat-card class="example-card shadow mt-4" style="border-radius: 5%; background-color: #2d2a2e; color: white;">
                     <mat-card-content>
                         <h3 class="mb-4" style="text-align: left;">Nearby Places</h3>
                         <ul class="features-list">
@@ -108,5 +108,15 @@
                 <app-form [apartment]="apartment"></app-form>
             </div>
         </div>
+        </div>
     </div>
-</div>
+
+<!-- reviews 
+<div class="reviews-section">
+    <h3>Reseñas</h3>
+    <ul>
+      <li *ngFor="let review of apartment.reviews | slice:0:5">
+        {{ review }}
+      </li>
+    </ul>
+</div> -->

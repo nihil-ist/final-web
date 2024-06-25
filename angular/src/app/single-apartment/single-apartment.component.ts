@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { Apartment } from '../interfaces/apartment';
 import { ApartmentsService } from '../apartmentsService/apartments.service';
@@ -6,7 +6,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { InfoComponent } from '../info/info.component';
 import { FormComponent } from '../form/form.component';
 import {MatButtonModule} from '@angular/material/button'; 
@@ -20,6 +20,9 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CurrencyService } from '../service-divisa/currency.service';
+import { Subscription } from 'rxjs';
+
 
 export interface Tile {
   src: string;
@@ -32,16 +35,20 @@ export interface Tile {
 @Component({
   selector: 'app-single-apartment',
   standalone: true,
-  imports: [MatGridListModule, NavbarComponent, FooterComponent, CommonModule, InfoComponent, FormComponent, RouterLink, MatButtonModule ,MatCardModule, MapComponent, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, SweetAlert2Module],
+  imports: [MatGridListModule, NavbarComponent, FooterComponent, CommonModule, InfoComponent, FormComponent, RouterLink, MatButtonModule ,MatCardModule, MapComponent, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, SweetAlert2Module, CurrencyPipe],
   templateUrl: './single-apartment.component.html',
   styleUrl: './single-apartment.component.css'
 })
-export class SingleApartmentComponent {
+export class SingleApartmentComponent implements OnInit, OnDestroy{
 
 
   
   @Input() apartment!:Apartment;
-  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog){
+  
+  priceInCurrentCurrency: string = '';
+  private currencySubscription: Subscription | null = null;
+
+  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog, public currencyService: CurrencyService){
     this.activatedRoute.params.subscribe(params=>
       {
         this.apartment = apartmentService.apartments[params['id']];
@@ -57,4 +64,36 @@ export class SingleApartmentComponent {
     {text: 'Five', cols: 1, rows: 1, src: '/5.jpg'}
   ];
 
+  ngOnInit(): void {
+    this.currencySubscription = this.currencyService.currency$.subscribe(currency => {
+      // Actualizar el precio en la divisa actual cada vez que cambie la divisa
+      this.updatePriceInCurrentCurrency();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.currencySubscription) {
+      this.currencySubscription.unsubscribe();
+    }
+  }
+    
+  // updatePriceInCurrentCurrency() {
+  //   // Obtener el precio original del apartamento
+  //   const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+
+  //   // Obtener la divisa actual desde el servicio CurrencyService
+  //   const currentCurrency = this.currencyService.getCurrentCurrency();
+
+  //   // Calcular el nuevo precio en la divisa actual
+  //   const newPrice = originalPrice * currentCurrency.value;
+
+  //   // Formatear el precio con el símbolo de la divisa
+  //   this.priceInCurrentCurrency = `${newPrice.toFixed(2)} ${currentCurrency.symbol}`;
+  // }
+
+  updatePriceInCurrentCurrency() {
+    const currentCurrency = this.currencyService.getCurrentCurrency();
+      const originalPrice = parseFloat(this.apartment.price.replace('$', '').trim());
+      this.apartment.priceInCurrentCurrency = (originalPrice * currentCurrency.value).toFixed(2);
+  }
 }

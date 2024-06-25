@@ -8,13 +8,14 @@ import {
   signInWithPhoneNumber,
   updateProfile,
 } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private firebaseAuth: Auth) {}
+  constructor(private firebaseAuth: Auth, private db: AngularFireDatabase) {}
 
   getAuth(): Auth {
     return this.firebaseAuth;
@@ -22,16 +23,29 @@ export class AuthService {
 
   register(
     email: string,
-    username: string,
-    password: string
+    password: string,
+    fullname: string,
+    username: string
   ): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.firebaseAuth,
       email,
       password
-    ).then((response) =>
-      updateProfile(response.user, { displayName: username })
-    );
+    ).then((response) => {
+      const user = response.user;
+      if (user) {
+        updateProfile(user, { displayName: fullname });
+        // Guardar información adicional en Realtime Database
+        return this.db.object(`/users/${user.uid}`).set({
+          uid: user.uid,
+          email: user.email,
+          fullname: fullname,
+          username: username,
+        });
+      } else {
+        throw new Error('User creation failed.');
+      }
+    });
 
     return from(promise);
   }
