@@ -51,11 +51,11 @@
 
             </div>
             <div class="col-4 text-center mt-5">
-                <mat-card class="example-card shadow" style=" border-radius: 5%;">
-
+                <mat-card class="example-card shadow" style=" border-radius: 5%; background-color: #2d2a2e; color: white;">
+                    
                     <mat-card-content>
-                        <h1 class="fs-3 mt-4">{{apartment.price}} USD <span class="text-muted">night</span></h1>
-
+                        <h1 class="fs-3 mt-4">{{apartment.price}} USD <span style="color: rgba(255, 255, 255, 0.7);">night</span></h1>
+                        
                         <hr class="my-4 mx-5">
                         <div class="text-center">
                             <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal"
@@ -104,7 +104,7 @@
             <div class="modal-header p-5" style="background-color: #F44336; color: white;">
                 <h3 style="text-transform: lowercase;">reserve {{apartment.name}}</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color: #2d2a2e; color: white;">
                 <app-form [apartment]="apartment"></app-form>
             </div>
         </div>

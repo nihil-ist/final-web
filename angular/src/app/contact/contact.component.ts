@@ -1,0 +1,43 @@
+import { Component } from '@angular/core';
+import { MailService } from './mail.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+@Component({
+  selector: 'app-contact',
+  standalone: true,
+  imports: [ReactiveFormsModule,HttpClientModule],
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css',
+  providers : [MailService]
+})
+export class ContactComponent {
+formulario: FormGroup;
+  resultado: any;
+
+  constructor(private fb: FormBuilder, private mailService: MailService) {
+    this.formulario = this.fb.group({
+      subject: ['', Validators.required],
+      email: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    console.log("estoy en el onSubmit");
+    if (this.formulario.valid) {
+      const data = {
+        subject: this.formulario.value.subject,
+        useremail: this.formulario.value.email, //email del user
+        description: this.formulario.value.description,
+        emailadmin: 'theapartmentbnb@gmail.com'
+      };
+
+      this.mailService.sendInfo(data).subscribe(response => {
+        this.resultado = response;
+      }, error => {
+        console.error('Error:', error);
+      });
+    }
+  }
+}

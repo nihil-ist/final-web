@@ -7,9 +7,9 @@ router.get('/', (req,res) => {
     res.send({message:"Im functioning right now"});
 });
 
-router.post('/mail',(req,res) =>{
+router.post('/contactMail',(req,res) =>{
     res.send({message:"Hola te voy a mandar un correo"});
-    const {subject,email,description} = req.body;
+    const {subject,useremail,description,emailadmin} = req.body;
     nodemailer.createTestAccount((err, account) => {
         if (err) {
             console.error('Failed to create a testing account. ' + err.message);
@@ -19,24 +19,25 @@ router.post('/mail',(req,res) =>{
         console.log(`
             Data received:
                 Subject: ${subject} 
-                Email: ${email} 
+                Email: ${useremail} 
                 Description or comment: ${description} 
+                Admin email: ${emailadmin}
         `);
         //configuracion del transporte del correo
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
             auth: {
-                user: 'ivanelmen420@gmail.com',
-                pass: 'qhhu wkaz kwkl ofbq'
+                user: 'theapartmentbnb@gmail.com',
+                pass: 'hnis dmaz zoju jkqo'
             },
             secure: true
         });
     
-        //configuracion del email que se va a mandar
+        //the message that goes from the user
         const message = {
-            from: 'ivanelmen420@gmail.com',
-            to: `${email}`,
+            from: 'theapartmentbnb@gmail.com',
+            to: `${useremail}`,
             subject: 'Response to your request',
             text: 'We received your comment, we\'ll get in contact with you as soon as possible :D',
             html: '<p>We received your comment, we\'ll get in contact with you as soon as possible :D</p>'
