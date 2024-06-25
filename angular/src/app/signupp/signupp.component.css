@@ -57,3 +57,10 @@ label {
 .error-message {
     color:#F44336;
 }
+
+.backgroundd {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 5vh 10vh;
+    border-radius: 10px;
+    color: white
+}
