@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Input } from '@angular/core';
 import { Apartment } from '../interfaces/apartment';
+import { FirebaseService } from '../services/firebase-service.service';
 import {
   MatDialogActions,
   MatDialogClose,

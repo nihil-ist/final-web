@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { User } from '../models/user.model';
+import { Reservation } from '../models/reservation.model';
 import { Database, ref, get, child, onValue, query, orderByChild, equalTo } from '@angular/fire/database';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,35 +11,35 @@ import { map } from 'rxjs/operators';
 export class FirebaseService {
   private dbPath = '/reservations';
 
-  usersRef: AngularFireList<User>;
+  reservationsRef: AngularFireList<Reservation>;
 
   constructor(private db: AngularFireDatabase) {
-    this.usersRef = db.list(this.dbPath);
+    this.reservationsRef = db.list(this.dbPath);
   }
 
-  getAll(): AngularFireList<User> {
-    return this.usersRef;
+  getAll(): AngularFireList<Reservation> {
+    return this.reservationsRef;
   }
 
-  create(user: User): any {
-    return this.usersRef.push(user);
+  create(res: Reservation): any {
+    return this.reservationsRef.push(res);
   }
 
   update(key: string, value: any): Promise<void> {
-    return this.usersRef.update(key, value);
+    return this.reservationsRef.update(key, value);
   }
 
   delete(key: string): Promise<void> {
-    return this.usersRef.remove(key);
+    return this.reservationsRef.remove(key);
   }
 
-  getUserById(key: string): Observable<User | null> {
-    const itemRef = this.db.object<User>(`${this.dbPath}/${key}`);
+  getUserById(key: string): Observable<Reservation | null> {
+    const itemRef = this.db.object<Reservation>(`${this.dbPath}/${key}`);
     return itemRef.valueChanges();
   }
 
-  getUsersByAttribute(attribute: string, value: any): Observable<User[]> {
-    return this.db.list<User>(this.dbPath, ref => ref.orderByChild(attribute).equalTo(value))
+  getreservationsByAttribute(attribute: string, value: any): Observable<Reservation[]> {
+    return this.db.list<Reservation>(this.dbPath, ref => ref.orderByChild(attribute).equalTo(value))
       .snapshotChanges()
       .pipe(
         map(changes =>
