@@ -5,6 +5,9 @@ import { ApartmentsComponent } from './apartments/apartments.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { SingleApartmentComponent } from './single-apartment/single-apartment.component';
 import { TableComponent } from './table/table.component';
+import { SignuppComponent } from './signupp/signupp.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoginnComponent } from './loginn/loginn.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -13,5 +16,8 @@ export const routes: Routes = [
     {path: 'gallery', component: GalleryComponent},
     {path: 'apartment/:id', component: SingleApartmentComponent},
     {path: 'reservations', component: TableComponent},
+    {path: 'register', component: SignuppComponent},
+    {path: 'contact', component: ContactComponent},
+    {path: 'signin', component: LoginnComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

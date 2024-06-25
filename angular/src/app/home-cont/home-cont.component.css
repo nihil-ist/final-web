@@ -4,8 +4,10 @@
     grid-gap: 20px; 
 }
 
+
+
 .grid-rec {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.06);
     padding: 20px;
     text-align: center;
     /* border: 1px solid #ccc; */
@@ -27,7 +29,7 @@
 }
 
 .greySection {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .grid-rec:hover{

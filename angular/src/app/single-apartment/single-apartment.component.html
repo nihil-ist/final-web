@@ -7,16 +7,12 @@
     <div>
         <mat-grid-list cols="4" [gutterSize]="'1%'">
             @for (tile of tiles; track tile) {
-              <mat-grid-tile
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background-image]="'url('+apartment.src+tile.src+')'"
-                [style.background-size]="'cover'"
+            <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows"
+                [style.background-image]="'url('+apartment.src+tile.src+')'" [style.background-size]="'cover'"
                 [style.margin]="'0px'"
-                [ngStyle]="{'border-radius': tile.src == '/1.jpg' ? '1vw 0 0 1vw' : tile.src == '/3.jpg' ? '0 1vw 0 0' : tile.src == '/5.jpg' ? '0 0 1vw 0' : ''}"
-                >
+                [ngStyle]="{'border-radius': tile.src == '/1.jpg' ? '1vw 0 0 1vw' : tile.src == '/3.jpg' ? '0 1vw 0 0' : tile.src == '/5.jpg' ? '0 0 1vw 0' : ''}">
 
-              </mat-grid-tile>
+            </mat-grid-tile>
             }
         </mat-grid-list>
     </div>
@@ -34,18 +30,18 @@
                         <h4 class="text-center">Rating</h4>
                     </div>
                 </div>
-                
+
                 <hr class="mb-5">
                 <h3 class="mb-4">About this place</h3>
                 <p class="lead mb-5">{{apartment.description}}</p>
-                
+
                 <hr class="mb-5">
 
-                <app-info></app-info>                
+                <app-info></app-info>
 
                 <hr class="mb-5 mt-5">
 
-                
+
 
                 <div class="row">
                     <div class="col">
@@ -55,58 +51,60 @@
 
             </div>
             <div class="col-4 text-center mt-5">
-                <mat-card class="example-card shadow" style=" border-radius: 5%;">
+                <mat-card class="example-card shadow" style=" border-radius: 5%; background-color: #2d2a2e; color: white;">
                     
                     <mat-card-content>
                         <h1 class="fs-3 mt-4">${{ priceInCurrentCurrency}}<span class="text-muted">night</span></h1>
                         
                         <hr class="my-4 mx-5">
                         <div class="text-center">
-                            <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal" data-bs-target="#exampleModal" mat-raised-button color="primary">reserve</button>
+                            <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" mat-raised-button color="primary">reserve</button>
                         </div>
 
                     </mat-card-content>
-                    
-                  </mat-card>
-                 
-                    <div class="mt-5">
-                        <app-map [apartamento]="apartment"></app-map>
-                    </div>
 
-                     <!-- pipe  -->
-                     <mat-card class="example-card shadow mt-4" style="border-radius: 5%;">
-                        <mat-card-content>
-                          <h3 class="mb-4" style="text-align: left;">Nearby Places</h3>
-                          <ul class="features-list">
+                </mat-card>
+
+                <div class="mt-5">
+                    <app-map [apartamento]="apartment"></app-map>
+                </div>
+
+                <!-- pipe  -->
+                <mat-card class="example-card shadow mt-4" style="border-radius: 5%;">
+                    <mat-card-content>
+                        <h3 class="mb-4" style="text-align: left;">Nearby Places</h3>
+                        <ul class="features-list">
                             <li *ngFor="let place of apartment.nearbyPlaces| keyvalue">
-                                
-                              <p><i class="fas fa-map-marker-alt"></i>
 
-                                {{ place.key }} </p> <p class="text2-stats">{{ place.value }}</p>
+                                <p><i class="fas fa-map-marker-alt"></i>
+
+                                    {{ place.key }} </p>
+                                <p class="text2-stats">{{ place.value }}</p>
                             </li>
-                          </ul>
-                        </mat-card-content>
-                    </mat-card>
-                      
+                        </ul>
+                    </mat-card-content>
+                </mat-card>
+
 
             </div>
 
         </div>
 
-        
+
     </div>
 
 </div>
 
-    <!-- Modal -->
+<!-- Modal -->
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="min-width: 60%; margin: 0 auto;" >
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width: 60%; margin: 0 auto;">
         <div class="modal-content">
             <div class="modal-header p-5" style="background-color: #F44336; color: white;">
-                <h3 style="text-transform: lowercase;">reserve {{apartment.name}}</h3>      
+                <h3 style="text-transform: lowercase;">reserve {{apartment.name}}</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color: #2d2a2e; color: white;">
                 <app-form [apartment]="apartment"></app-form>
             </div>
         </div>

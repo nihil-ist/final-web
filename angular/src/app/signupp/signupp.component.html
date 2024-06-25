@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="paddingx">
+  
+    <div class="">
+      <form id="contactus" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1 class="my-5">sign in</h1>
+
+        <fieldset>
+            <input placeholder="email" type="text" tabindex="1" name=email  required
+              autofocus formControlName="email">
+        </fieldset>
+        <fieldset>
+          <input placeholder="usuario" type="text" tabindex="1" name=username  required
+            autofocus formControlName="username">
+        </fieldset>
+        <fieldset>
+          <input placeholder="contraseña" type="password" tabindex="3" name="password" 
+            required formControlName="password">
+        </fieldset>
+        <fieldset>
+            <button  mat-raised-button color="primary" [routerLink]="['/apartments']" routerLinkActive="router-link-active" class="shadow">go to apartments</button>
+
+          <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button>
+        </fieldset>
+        
+      </form>
+    </div>
+    
+  </div>
