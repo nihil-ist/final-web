@@ -12,5 +12,5 @@ export interface Apartment{
     latitud:number;
     longitud:number;
     nearbyPlaces: { [key: string]: any };
-    reviews: string[];
+    
 }

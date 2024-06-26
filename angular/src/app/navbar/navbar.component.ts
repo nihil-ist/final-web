@@ -49,5 +49,10 @@ export class NavbarComponent implements OnInit  {
     const currency = target.value;
     this.currencyService.setCurrency(currency);
   }
+  isNavbarOpen = false;
+
+    toggleNavbar() {
+        this.isNavbarOpen = !this.isNavbarOpen;
+    }
   
 }

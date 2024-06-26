@@ -1,24 +1,35 @@
-.text2-stats{
+.text2-stats {
     padding-block-start: 7px;
     font-size: 12px;
     color: grey;
 }
+
 .features-list {
     list-style-type: none; 
     padding-left: 0; 
     text-align: left;
 }
 
-  
 .features-list li {
     margin-bottom: 25px; 
 }
+
 .features-list li p {
     margin: 0;
     padding: 0;
 }
-  
 
 span {
     color: rgba(255, 255, 255, 0.6)
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .text2-stats {
+        font-size: 10px;
+    }
+    
+    .features-list li {
+        margin-bottom: 15px;
+    }
 }

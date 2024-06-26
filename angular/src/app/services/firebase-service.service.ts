@@ -26,8 +26,13 @@ export class FirebaseService {
   }
 
   update(key: string, value: any): Promise<void> {
+<<<<<<< HEAD
     return this.reservationsRef.update(key, value);
   }
+=======
+    return this.usersRef.update(key, value);
+  } 
+>>>>>>> 231404b3746961012c0af06595979741b77c929d
 
   delete(key: string): Promise<void> {
     return this.reservationsRef.remove(key);
