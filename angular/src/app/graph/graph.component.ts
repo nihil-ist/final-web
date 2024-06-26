@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase-service.service';
 import { Chart } from 'chart.js/auto';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-graph',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './graph.component.html',
   styleUrl: './graph.component.css'
 })

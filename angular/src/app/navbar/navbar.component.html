@@ -1,70 +1,71 @@
 
 <div class="sticky-top" style="background-color: #2d2a2e;">
-    <mat-toolbar color="primary" style=" background-color: #f44336; border-top-left-radius: 25px; border-top-right-radius: 25px;" class="shadow-lg nav-container"> 
-        &nbsp;&nbsp;
-        <div class="pointer" [routerLink]="['/home']" routerLinkActive="router-link-active">
-            <img src="assets/img/logo.png" alt="" width="50">
-            &nbsp;
-            <span>the apartment</span>  
-        </div>
-        
-        <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-          <i class="fas fa-bars"></i>
-      </button>
-
-      <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
-
-        <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">home</a>  
-        @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
-          <a mat-button [routerLink]="['/database']" routerLinkActive="router-link-active">database</a>
-          <a mat-button [routerLink]="['/myreservations']" routerLinkActive="router-link-active">reservations</a>
-        }
-        <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active">apartments</a>  
-        <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active">contact</a>
-        <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active">gallery</a>  
-        <a mat-button [routerLink]="['/faq']" routerLinkActive="router-link-active">faq</a>
-        <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">about</a>
-
-        @if (logged.getIsLogged()=='') {
-          <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active">sign in</a>
-          <!-- <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active">sign up</a> -->
-        } @else {
-          <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active">{{username}}</a>
-        }
-
-        <div><div class="custom-select-wrapper">
-            <i class="fas fa-globe select-icon"></i>
-            <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
-              <option value="USD">USD</option>
-              <option value="MXN">MXN</option>
-              <option value="EUR">EUR</option>
-            </select>
-          </div>
-        </div>
-
-       
-
-        <li class="nav-item dropdown">
-            <div class="btn-group dropstart">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/img/accesibility.png" alt="" height="25">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" (click)="readText('What the fuck did you just fucking say about me, you little bitch? Ill have you know I graduated top of my class in the Navy Seals, and Ive been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and Im the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. Youre fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and thats just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little clever comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldnt, you didnt, and now youre paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. Youre fucking dead, kiddo.')">Read</a></li>
-                    <li><a class="dropdown-item" (click)="togglePauseResume()">{{ isPaused ? 'Resume' : 'Pause' }}</a></li>
-                    <li><a class="dropdown-item" (click)="stopReading()">Stop</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="toggleContrast()">Gray Scale</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="increaseFontSize()">Increase Text Size</a></li>
-                    <li><a class="dropdown-item" (click)="decreaseFontSize()">Decrease Text Size</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="increaseLineHeight()">Increase Line Spacing</a></li>
-                    <li><a class="dropdown-item" (click)="decreaseLineHeight()">Decrease Line Spacing</a></li>
-                </ul>
-            </div>
-        </li>
-        
+  <mat-toolbar color="primary" style=" background-color: #f44336; border-top-left-radius: 25px; border-top-right-radius: 25px;" class="shadow-lg nav-container"> 
+      &nbsp;&nbsp;
+      <div class="pointer" [routerLink]="['/home']" routerLinkActive="router-link-active">
+          <img src="assets/img/logo.png" alt="" width="50">
+          &nbsp;
+          <span>the apartment</span>  
       </div>
-    </mat-toolbar>
+      
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
+
+      <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">home</a>  
+      @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
+        <a mat-button [routerLink]="['/database']" routerLinkActive="router-link-active">database</a>
+        <a mat-button [routerLink]="['/chart']" routerLinkActive="router-link-active">chart</a>
+        <a mat-button [routerLink]="['/myreservations']" routerLinkActive="router-link-active">reservations</a>
+      }
+      <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active">apartments</a>  
+      <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active">contact</a>
+      <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active">gallery</a>  
+      <a mat-button [routerLink]="['/faq']" routerLinkActive="router-link-active">faq</a>
+      <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">about</a>
+
+      @if (logged.getIsLogged()=='') {
+        <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active">sign in</a>
+        <!-- <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active">sign up</a> -->
+      } @else {
+        <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active">{{username}}</a>
+      }
+
+      <div><div class="custom-select-wrapper">
+          <i class="fas fa-globe select-icon"></i>
+          <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
+            <option value="USD">USD</option>
+            <option value="MXN">MXN</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+      </div>
+
+     
+
+      <li class="nav-item dropdown">
+          <div class="btn-group dropstart">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="assets/img/accesibility.png" alt="" height="25">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" (click)="readText('What the fuck did you just fucking say about me, you little bitch? Ill have you know I graduated top of my class in the Navy Seals, and Ive been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and Im the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. Youre fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and thats just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little clever comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldnt, you didnt, and now youre paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. Youre fucking dead, kiddo.')">Read</a></li>
+                  <li><a class="dropdown-item" (click)="togglePauseResume()">{{ isPaused ? 'Resume' : 'Pause' }}</a></li>
+                  <li><a class="dropdown-item" (click)="stopReading()">Stop</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" (click)="toggleContrast()">Gray Scale</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" (click)="increaseFontSize()">Increase Text Size</a></li>
+                  <li><a class="dropdown-item" (click)="decreaseFontSize()">Decrease Text Size</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" (click)="increaseLineHeight()">Increase Line Spacing</a></li>
+                  <li><a class="dropdown-item" (click)="decreaseLineHeight()">Decrease Line Spacing</a></li>
+              </ul>
+          </div>
+      </li>
+      
+    </div>
+  </mat-toolbar>
 </div>

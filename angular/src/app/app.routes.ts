@@ -14,6 +14,7 @@ import { UserreservationsComponent } from './userreservations/userreservations.c
 import { SmsLoginComponent } from './sms-login/sms-login.component';
 import { AyudaFAQComponent } from './ayuda-faq/ayuda-faq.component';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { GraphComponent } from './graph/graph.component';
 
 
 export const routes: Routes = [
@@ -33,5 +34,6 @@ export const routes: Routes = [
     {path: 'faq', component: AyudaFAQComponent},
     {path: 'help_faq', component: AyudaFAQComponent},
     {path: 'qrtest', component: QRCodeComponent},
+    {path: 'chart', component: GraphComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

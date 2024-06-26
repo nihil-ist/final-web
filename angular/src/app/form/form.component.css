@@ -1,4 +1,71 @@
-input[disabled] {
+/* input[disabled] {
     background-color: #fff; /* Color de fondo blanco */
   /* border: 1px solid #ccc; */
-}
+
+
+  input[type=text], input[type=date], input[type=number], input[type=tel], select, textarea {
+    background: none;
+    border: none; 
+    border-radius: 0;
+    border-bottom: 1px solid #F44336;
+    color: white
+  }
+  
+  select:focus {
+    background-color: #2d2a2e;
+  }
+  
+  input[type=text]:focus > label {
+    background: none;
+    color: white
+  }
+  
+  input[type=text]:focus {
+    background: none;
+    color: white
+  }
+  
+  .form-label::after{
+    background-color: transparent !important;
+  }
+  
+  .input:focus * {
+    outline: 1px solid white;
+    border: 1px solid white;
+  }
+  
+  .custom-border:focus {
+    border-color: #fff; 
+    /* box-shadow: 0 0 0 0.25rem rgba(244, 67, 54, 0.25); */
+    outline: none; 
+    box-shadow: none;
+  }
+  
+  label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  .error-message {
+    color:#F44336;
+  }
+  
+  input {
+    color: white;
+  }
+  
+  input::placeholder {
+    color: white;
+  }
+  
+  input[type=checkbox] {
+    background: none;
+  }
+  
+  input[type=checkbox]:hover {
+    cursor: pointer;
+  }
+  
+  input[type=checkbox]:checked {
+    background: #F44336;
+    border-color: #F44336;
+  }
