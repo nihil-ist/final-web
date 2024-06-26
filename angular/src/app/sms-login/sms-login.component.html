@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div class="paddingx my-5">
+    <div class="backgroundd shadow-lg">
+        <div id="recaptcha-container" style="margin-left: 20px;"></div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h1 class="fw-bold my-5">SMS Sign in</h1>
+            <div class="form-floating mb-5">
+                <input type="text" id="celular" class="form-control" placeholder="celular" formControlName="celular">
+                <label for="celular" class="form-label text-white">phone number</label>
+            </div>
+            <div class="text-center mb-3">
+                <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">Enviar mensaje</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (confirmSMS) {
+    <div class="paddingx my-5">
+        <div class="backgroundd shadow-lg">
+            <form [formGroup]="formConfirmationSMS" (ngSubmit)="onConfirm()">
+                <h1 class="fw-bold my-5">Confirmación</h1>
+                <div class="form-floating mb-5">
+                    <input type="text" id="SMScode" class="form-control" placeholder="Verificacion" formControlName="SMScode">
+                    <label for="SMScode" class="form-label text-white">Verificacion</label>
+                </div>
+                <div class="text-center mb-3">
+                    <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!formConfirmationSMS.valid" style="background-color: #F44336; color: white; border: none;">Enviar mensaje</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
