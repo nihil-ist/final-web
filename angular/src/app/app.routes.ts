@@ -9,6 +9,7 @@ import { SignuppComponent } from './signupp/signupp.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginnComponent } from './loginn/loginn.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DbqueriesComponent } from './dbqueries/dbqueries.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'signin', component: LoginnComponent},
     {path: 'profile', component: ProfileComponent},
+    {path: 'database', component: DbqueriesComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

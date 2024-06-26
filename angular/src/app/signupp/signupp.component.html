@@ -4,7 +4,7 @@
   
     <div class="backgroundd shadow-lg">
       <form id="contactus" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <h1 class="my-5">sign up</h1>
+        <h1 class="my-5 fw-bold">sign up</h1>
 
         <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
@@ -45,8 +45,11 @@
         </div>
 
 
+        @if (!form.valid){ 
+
+        }
         <div class="text-center my-5">
-            <button id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">sign up</button>
+            <button [disabled]="!form.valid" id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">sign up</button>
         </div>  
 
           <!-- <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button> -->

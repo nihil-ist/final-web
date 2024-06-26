@@ -1,20 +1,21 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-  <div class="p-5 d-flex flex-column" id="_2bg">
+<div class="paddingx my-5">
+  <div class="backgroundd shadow-lg">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h1 class="text-center mb-5 fw-bold mt-3">Sign In</h1>
-      <div class="form-floating mb-5 mx-5">
+      <h1 class="fw-bold my-5">sign in</h1>
+      <div class="form-floating mb-5">
         <input type="text" id="email" class="form-control" placeholder="Email" formControlName="email">
-        <label for="email">Email</label>
+        <label class="form-label text-white" for="email">email</label>
       </div>
-      <div class="form-floating mb-5 mx-5">
+      <div class="form-floating mb-5">
         <input type="password" id="contrasenya" class="form-control" placeholder="Contraseña" formControlName="contrasenya">
-        <label for="contrasenya">Contraseña</label>
+        <label class="form-label text-white" for="contrasenya">password</label>
       </div>
       <div class="text-center mb-3">
-        <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">Login</button>
+        <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">sign in</button>
       </div>
     </form>
+    <h5 class="text-center mt-5" style="color: rgba(255, 255, 255, 0.8)">don't have an account yet? <a [routerLink]="['/register']" routerLinkActive="router-link-active" style="color: #F44336;">sign up</a></h5>
   </div>
 </div>
