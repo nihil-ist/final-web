@@ -4,6 +4,8 @@ import { Reservation } from '../models/reservation.model';
 import { FirebaseService } from '../services/firebase-service.service';
 import { map } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ApartmentService2 } from '../services/apartment-service2.service';
+import { Apartment } from '../models/apartment.model';
 
 @Component({
   selector: 'app-dbqueries',
@@ -13,9 +15,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dbqueries.component.css'
 })
 export class DbqueriesComponent implements OnInit{
-  reservations?: Reservation[];
+  apartments?: Apartment[];
   
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: ApartmentService2) { }
 
   ngOnInit(): void {
       this.retrieveReservations();
@@ -30,15 +32,15 @@ export class DbqueriesComponent implements OnInit{
         )
       )
     ).subscribe(data => {
-      this.reservations = data;
+      this.apartments = data;
     });
   }
 
-  parsePrice(price: string | undefined): number {
+  parsePrice(price: number | undefined): number {
     if (!price) {
       return 0; // Valor predeterminado si price es undefined
     }
-    return Number(price.replace(/[^0-9.-]+/g, ''));
+    return price;
   }
 
 }

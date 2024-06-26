@@ -4,16 +4,18 @@ import { Reservation } from '../models/reservation.model';
 import { Database, ref, get, child, onValue, query, orderByChild, equalTo } from '@angular/fire/database';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   private dbPath = '/reservations';
-
+  private apiUrl = 'http://localhost:3000'; 
+  
   reservationsRef: AngularFireList<Reservation>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private http: HttpClient) {
     this.reservationsRef = db.list(this.dbPath);
   }
 
@@ -46,5 +48,10 @@ export class FirebaseService {
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
       );
+  }
+
+
+  getReservationsByMonth(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/reservations-by-month`);
   }
 }

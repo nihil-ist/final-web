@@ -24,6 +24,7 @@
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "angularx-qrcode": "^17.0.1",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.3",
     "firebase": "^10.12.2",
     "leaflet": "^1.9.4",
     "masonry-layout": "^4.2.2",
