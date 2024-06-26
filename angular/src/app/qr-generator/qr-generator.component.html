@@ -1,14 +1,25 @@
-<div>
-    <h1>QR generados</h1>
-    <ul>
-      <li *ngFor="let reservation of reservations$ | async">
-        {{ reservation.name }} - {{ reservation.date }}
-        <button (click)="generateQrCode(reservation)">Generar QR</button>
-      </li>
-    </ul>
-  
-    <div *ngIf="qrData">
-      <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-    </div>
-  </div>
+<div class="container my-5">
+    <h1 class="mb-5">Reservations</h1>
+    
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">QR Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of reservations">
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.name }}</td>
+                <td>{{ reservation.date }}</td>
+                <td>
+                    <qrcode [qrdata]="generateQRCode(reservation)" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
   

@@ -1,0 +1,28 @@
+.list {
+    text-align: left;
+    /* max-width: 750px; */
+    margin: auto;
+  }
+
+h4 {
+    color: #fff;
+}
+
+.list-group-item {
+  background: none;
+  color: white;
+  border: none;
+  /* border-top: 1px solid #f44336; */
+  border-bottom: 1px solid #f44336;
+  border-radius: 0;
+}
+
+.list-group-item:hover {
+  cursor: pointer;
+}
+
+.active {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: #fcfcfa;
+}

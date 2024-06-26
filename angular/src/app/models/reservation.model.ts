@@ -1,4 +1,5 @@
 export class Reservation {
+  key?: string | null;
   arrivalDate?: any;
   departureDate?: any;
   arrivalTime?: string;
