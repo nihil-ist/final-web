@@ -45,6 +45,7 @@ export class SingleApartmentComponent implements OnInit, OnDestroy{
   
   @Input() apartment!:Apartment;
   
+  
   priceInCurrentCurrency: string = '';
   private currencySubscription: Subscription | null = null;
 

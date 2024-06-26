@@ -1,15 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Input } from '@angular/core';
 import { Apartment } from '../interfaces/apartment';
-import {
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogModule,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { FirebaseService } from '../services/firebase-service.service';
+import {MatDialogActions,MatDialogClose,MatDialogContent,MatDialogModule,MatDialogTitle} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +14,9 @@ import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
+import { Reservation } from '../models/reservation.model';
+import { map } from 'rxjs';
+import { LoggedService } from '../services/logged.service';
 
 export interface Tile {
   src: string;
@@ -40,12 +38,28 @@ export interface Tile {
     MatInputModule,
     MatGridListModule,
     SweetAlert2Module,
+    ReactiveFormsModule,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
 export class FormComponent {
   dialog1boolean: boolean = true;
+  submitted = false;
+  result!: string;
+
+  constructor(private firebase: FirebaseService,private logged:LoggedService) { }
+
+  reservationForm = new FormGroup({
+    arrivalDate: new FormControl('', [Validators.required]),
+    departureDate: new FormControl('', [Validators.required]),
+    arrivalTime: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    price: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    nights: new FormControl('', [Validators.required])
+  });
 
   tiles: Tile[] = [
     { text: 'One', cols: 2, rows: 2, src: '/1.jpg' },
@@ -67,7 +81,7 @@ export class FormComponent {
   reservation: Reservation = {
     arrivalDate: null,
     departureDate: null,
-    arrivalTime: '13:00',
+    arrivalTime: '',
     name: '',
     phone: '',
     email: '',
@@ -77,13 +91,10 @@ export class FormComponent {
   };
   dialog: any;
   ngOnInit() {
-    const storedReservations = localStorage.getItem('reservations');
-    if (storedReservations) {
-      this.reservations = JSON.parse(storedReservations);
+    this.retrieveReservations();
+    if (this.reservations) {
       this.splitReservations();
     }
-    // this.arrivalDate = localStorage.getItem('selectedDate');
-    // this.departureDate = localStorage.getItem('departureDate');
   }
 
   calculateNights(arrivalDate: Date, departureDate: Date): number {
@@ -115,9 +126,21 @@ export class FormComponent {
     this.reservation.price = this.apartment.price;
     this.reservations.push(this.reservation);
     this.splitReservations(); // Update filtered reservations immediately
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+
+    //localStorage.setItem('reservations', JSON.stringify(this.reservations));
+
 
     // Reset form after successful submission (optional)
+    this.firebase.create(this.reservation).then(() => {
+      console.log('Created new user successfully!');
+      this.submitted = true;
+    });
+    /*if(this.reservationForm.valid){
+      console.log('here i am');
+    } else {
+      this.result = "Make sure the user's data is correct";
+    }*/
+    console.log('after submit');
     this.reservation = {
       arrivalDate: null,
       departureDate: null,
@@ -130,8 +153,22 @@ export class FormComponent {
       nights: 0,
     };
 
+    const email = this.logged.getIsLogged();
     this.showAlertgood(); // Display success alert
   }
+
+  retrieveReservations(): void {
+    this.firebase.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.reservations = data;
+    });
+  }
+  
   
 
   saveDate(event: any) {
@@ -208,16 +245,4 @@ export class FormComponent {
     }
     return true;
   }
-}
-
-interface Reservation {
-  arrivalDate: Date | null;
-  departureDate: Date | null;
-  arrivalTime: '13:00';
-  name: string;
-  phone: string;
-  email: string;
-  price: string;
-  address: string;
-  nights: number;
 }
