@@ -1,25 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatToolbarModule} from '@angular/material/toolbar'; 
 import { BannerComponent } from './banner/banner.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { VideopipeComponent } from './videopipe/videopipe.component';
 import { ApartmentsComponent } from './apartments/apartments.component';
 import { SearchComponent } from './search/search.component';
-import { filter } from 'rxjs';
 import { CarouselComponent } from './carousel/carousel.component';
 import { InfoComponent } from './info/info.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
-import { LoginnComponent } from './loginn/loginn.component';
+import { LoginnModule } from './loginn/loginn.module';
 declare const bootstrap: any;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, BannerComponent, FooterComponent, HomeComponent, VideopipeComponent, ApartmentsComponent, SearchComponent, CarouselComponent, InfoComponent, FormComponent, TableComponent, LoginnComponent],
+  imports: [RouterOutlet, NavbarComponent, BannerComponent, FooterComponent, HomeComponent, VideopipeComponent, ApartmentsComponent, SearchComponent, CarouselComponent, InfoComponent, FormComponent, TableComponent, LoginnModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 

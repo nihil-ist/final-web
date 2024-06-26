@@ -245,6 +245,19 @@ export class FormComponent {
     return true;
   }
 
+  roomAvailable(arriveDate: Date, departureDate: Date): boolean {
+    let available = true;
+
+    this.reservations.forEach((reservation) => {
+      if ( (arriveDate >= reservation.arrivalDate && arriveDate <= reservation.departureDate) ||
+          (departureDate >= reservation.arrivalDate && departureDate <= reservation.departureDate) ){
+        available = false;
+      }
+    });
+
+    return available;
+  }
+
   //  alerts
 
   showAlertgood() {
