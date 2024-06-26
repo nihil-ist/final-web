@@ -56,8 +56,8 @@ export class FormComponent {
     arrivalTime: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    price: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
+    price: new FormControl({disabled: true},[Validators.required]),
+    address: new FormControl({disabled: true}, [Validators.required]),
     nights: new FormControl('', [Validators.required])
   });
 
@@ -187,6 +187,44 @@ export class FormComponent {
       }
     }
   }
+
+  saveDepartureDate(event: any) {
+    const departureDate = new Date(event.target.value);
+    const arrivalDate = this.reservation.arrivalDate;
+    const currentDate = new Date();
+
+    if (arrivalDate && departureDate <= arrivalDate) {
+      this.showAlertbefore();
+      event.target.value = '';
+    } else if(departureDate < currentDate){
+      this.showAlertpassed();
+    } else{
+      this.reservation.departureDate = departureDate;
+      if (arrivalDate) {
+        this.reservation.nights = this.calculateNights(
+          arrivalDate,
+          departureDate
+        );
+      }
+    }
+  }
+
+  isDateAvailable(selectedDate: Date): boolean {
+    for (const reservation of this.reservations) {
+      if (
+        reservation.arrivalDate &&
+        reservation.departureDate &&
+        selectedDate >= reservation.arrivalDate &&
+        selectedDate <= reservation.departureDate
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  //  alerts
+
   showAlertgood() {
     Swal.fire({
       title: 'Great!',
@@ -215,34 +253,5 @@ export class FormComponent {
       icon: 'error', // You can use other icons like 'info', 'warning', 'error'
     });
   }
-  saveDepartureDate(event: any) {
-    const departureDate = new Date(event.target.value);
-    const arrivalDate = this.reservation.arrivalDate;
-    if (arrivalDate && departureDate <= arrivalDate) {
-      this.showAlertbefore();
-      event.target.value = '';
-    } else {
-      this.reservation.departureDate = departureDate;
-      if (arrivalDate) {
-        this.reservation.nights = this.calculateNights(
-          arrivalDate,
-          departureDate
-        );
-      }
-    }
-  }
-
-  isDateAvailable(selectedDate: Date): boolean {
-    for (const reservation of this.reservations) {
-      if (
-        reservation.arrivalDate &&
-        reservation.departureDate &&
-        selectedDate >= reservation.arrivalDate &&
-        selectedDate <= reservation.departureDate
-      ) {
-        return false;
-      }
-    }
-    return true;
-  }
+  
 }
