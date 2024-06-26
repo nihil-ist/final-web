@@ -10,11 +10,12 @@ import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoggedService } from '../services/logged.service';
 import { Router, RouterModule } from '@angular/router';
+import { SmsLoginComponent } from '../sms-login/sms-login.component';
 
 @Component({
   selector: 'app-loginn',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NavbarComponent, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, NavbarComponent, RouterModule, SmsLoginComponent],
   templateUrl: './loginn.component.html',
   styleUrl: './loginn.component.css',
 })
@@ -25,7 +26,6 @@ export class LoginnComponent {
     email: ['', Validators.required],
     contrasenya: ['', Validators.required],
   });
-
   
   onSubmit() {
     console.log('Form submitted');
