@@ -21,10 +21,25 @@ import { FormsModule } from '@angular/forms';
 export class NavbarComponent implements OnInit  {
 
   highContrast = false;
+  fontSize = 16;
 
   toggleContrast() {
     this.highContrast = !this.highContrast;
     document.body.classList.toggle('high-contrast', this.highContrast);
+  }
+
+  increaseFontSize(): void {
+    if (this.fontSize < 24) {
+      this.fontSize += 2;
+      document.body.style.fontSize = `${this.fontSize}px`;
+    }
+  }
+  
+  decreaseFontSize(): void {
+    if (this.fontSize > 12) {
+      this.fontSize -= 2;
+      document.body.style.fontSize = `${this.fontSize}px`;
+    }
   }
   
   srch:string="";
