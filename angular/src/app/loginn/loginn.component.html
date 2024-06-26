@@ -15,6 +15,15 @@
         <div class="text-center mb-3">
         <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">sign in</button>
       </div>
+
+      <ng-template #emptyLoadingTemplate></ng-template>
+
+      <ngx-loading [show]="loading" [config]="{
+        animationType: ngxLoadingAnimationTypes.circleSwish,
+        primaryColour: '#f44336',
+        secondaryColour: '#f44336',
+      }" [template]="emptyLoadingTemplate"></ngx-loading>
+
     </form>
     <h5 class="text-center mt-5" style="color: rgba(255, 255, 255, 0.8)">don't have an account yet? <a [routerLink]="['/register']" routerLinkActive="router-link-active" style="color: #F44336;">sign up</a></h5>
     <h5 class="text-center mt-5" style="color: rgba(255, 255, 255, 0.8)">Or try our login via <a [routerLink]="['/smslogin']" routerLinkActive="router-link-active" style="color: #F44336;">SMS</a></h5>

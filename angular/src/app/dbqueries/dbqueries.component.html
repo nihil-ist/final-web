@@ -1,9 +1,65 @@
 <app-navbar></app-navbar>
 
-<p>dbqueries works!</p>
+<div class="paddingx my-5">
+    <h1 class="mb-5">database queries</h1>
 
-<div *ngFor="let item of reservations">
-    <div *ngIf="parsePrice(item.price) > 100">
-        {{ item.price }}
-    </div>
+    <h2 class="mb-5">apartments priced over $100</h2>
+    
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Price</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of apartments">
+                <ng-container *ngIf="parsePrice(item.price) > 100">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.owner }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.rating }}</td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+        
+    <h2 class="my-5">apartments with a rating higher than 4.5</h2>
+    
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Price</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of apartments">
+                <ng-container *ngIf="parsePrice(item.rating) > 4.5">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.owner }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.rating }}</td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    
+    
 </div>

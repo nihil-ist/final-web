@@ -6,18 +6,18 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BannerComponent } from '../banner/banner.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { GraphComponent } from '../graph/graph.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule,HttpClientModule,NavbarComponent,BannerComponent,MatToolbarModule],
+  imports: [ReactiveFormsModule,HttpClientModule,NavbarComponent,BannerComponent,MatToolbarModule, GraphComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
   providers : [MailService]
 })
 export class ContactComponent {
 formulario: FormGroup;
-  resultado: any;
 
   constructor(private fb: FormBuilder, private mailService: MailService) {
     this.formulario = this.fb.group({
@@ -38,7 +38,6 @@ formulario: FormGroup;
       };
 
       this.mailService.sendInfo(data).subscribe(response => {
-        this.resultado = response;
       }, error => {
         console.error('Error:', error);
       });
