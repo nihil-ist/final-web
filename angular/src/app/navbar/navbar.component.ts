@@ -20,6 +20,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit  {
 
+  highContrast = false;
+
+  toggleContrast() {
+    this.highContrast = !this.highContrast;
+    document.body.classList.toggle('high-contrast', this.highContrast);
+  }
+  
   srch:string="";
   selectedCurrency: string = 'USD';
 

@@ -24,3 +24,6 @@ body {
     border-radius: 10px;
     color: white
 }
+.high-contrast {
+    filter: grayscale(100%);
+}

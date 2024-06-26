@@ -1,2 +1,21 @@
 <app-navbar></app-navbar>
-<p>profile works!</p>
+
+<div class="paddingx my-5">
+    <div class="backgroundd shadow-lg">
+        <form id="logoutForm" (click)="OnLogOut()">
+            <div class="text-center my-5">
+                <button id="logout-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">Log out</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="paddingx my-5">
+    <div class="backgroundd shadow-lg">
+        <form id="reservationsForm" (click)="OnReservations()">
+            <div class="text-center my-5">
+                <button id="reservations-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">Reservations</button>
+            </div>
+        </form>
+    </div>
+</div>
