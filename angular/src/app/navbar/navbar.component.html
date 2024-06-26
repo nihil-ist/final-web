@@ -46,9 +46,9 @@
                     <img src="assets/img/accesibility.png" alt="" height="25">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="">Leer</a></li>
-                    <li><a class="dropdown-item" href="#">Pausar</a></li>
-                    <li><a class="dropdown-item" href="#">Detener</a></li>
+                    <li><a class="dropdown-item" (click)="readText('Touch me, Lord, heal us, Lord...We begin a prayer chain of a thousand Our Fathers to ask for the health of the sick. You just need to pray one Lords Prayer and then share this message with others so that they continue praying. Please share it! Today is the Day of the Sick and we want to raise our prayers for them.')">Leer</a></li>
+                    <li><a class="dropdown-item" (click)="togglePauseResume()">{{ isPaused ? 'Reanudar' : 'Pausar' }}</a></li>
+                    <li><a class="dropdown-item" (click)="stopReading()">Detener</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" (click)="toggleContrast()">Alternar contraste</a></li>
                     <li><hr class="dropdown-divider"></li>
