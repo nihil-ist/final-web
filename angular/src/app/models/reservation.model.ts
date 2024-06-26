@@ -1,6 +1,6 @@
 export class Reservation {
-  arrivalDate?: Date | null;
-  departureDate?: Date | null;
+  arrivalDate?: any;
+  departureDate?: any;
   arrivalTime?: string;
   name?: string;
   phone?: string;
