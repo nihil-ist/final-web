@@ -53,12 +53,9 @@ export class FormComponent {
   reservationForm = new FormGroup({
     arrivalDate: new FormControl('', [Validators.required]),
     departureDate: new FormControl('', [Validators.required]),
-    arrivalTime: new FormControl('', [Validators.required]),
+    //arrivalTime: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    price: new FormControl({disabled: true},[Validators.required]),
-    address: new FormControl({disabled: true}, [Validators.required]),
-    nights: new FormControl('', [Validators.required])
+    phone: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
   tiles: Tile[] = [
@@ -122,8 +119,11 @@ export class FormComponent {
   }
 
   submitForm() {
+    this.reservation.arrivalDate = this.reservationForm.value.arrivalDate;
+    this.reservation.departureDate = this.reservationForm.value.departureDate;
     this.reservation.address = this.apartment.address;
     this.reservation.price = this.apartment.price;
+    this.reservation.email = this.logged.getIsLogged();
     this.reservations.push(this.reservation);
     this.splitReservations(); // Update filtered reservations immediately
 
@@ -131,15 +131,18 @@ export class FormComponent {
 
 
     // Reset form after successful submission (optional)
-    this.firebase.create(this.reservation).then(() => {
+    /*this.firebase.create(this.reservation).then(() => {
+      console.log('Created new user successfully!');
+      this.submitted = true;
+    });*/
+    if(this.reservationForm.valid){
+      this.firebase.create(this.reservation).then(() => {
       console.log('Created new user successfully!');
       this.submitted = true;
     });
-    /*if(this.reservationForm.valid){
-      console.log('here i am');
     } else {
       this.result = "Make sure the user's data is correct";
-    }*/
+    }
     console.log('after submit');
     this.reservation = {
       arrivalDate: null,
@@ -153,7 +156,6 @@ export class FormComponent {
       nights: 0,
     };
 
-    const email = this.logged.getIsLogged();
     this.showAlertgood(); // Display success alert
   }
 
