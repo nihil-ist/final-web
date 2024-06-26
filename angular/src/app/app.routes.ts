@@ -13,8 +13,8 @@ import { DbqueriesComponent } from './dbqueries/dbqueries.component';
 import { UserreservationsComponent } from './userreservations/userreservations.component';
 import { SmsLoginComponent } from './sms-login/sms-login.component';
 import { AyudaFAQComponent } from './ayuda-faq/ayuda-faq.component';
-import { QRCodeComponent } from 'angularx-qrcode';
 import { GraphComponent } from './graph/graph.component';
+import { QrGeneratorComponent } from './qr-generator/qr-generator.component';
 
 
 export const routes: Routes = [
@@ -33,7 +33,7 @@ export const routes: Routes = [
     {path: 'myreservations', component: UserreservationsComponent},
     {path: 'faq', component: AyudaFAQComponent},
     {path: 'help_faq', component: AyudaFAQComponent},
-    {path: 'qrtest', component: QRCodeComponent},
+    {path: 'qrtest', component: QrGeneratorComponent},
     {path: 'chart', component: GraphComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
