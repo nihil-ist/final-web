@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase-service.service';
 import { Reservation } from '../models/reservation.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { QRCodeModule } from 'angularx-qrcode';
+import { data } from 'jquery';
+
 
 @Component({
   selector: 'app-qr-generator',
@@ -11,20 +13,29 @@ import { QRCodeModule } from 'angularx-qrcode';
   templateUrl: './qr-generator.component.html',
   styleUrl: './qr-generator.component.css'
 })
-export class QrGeneratorComponent implements OnInit {
-  reservations$:  Observable<Reservation[]>;
-  selectedReservation: Reservation | null = null;
-  qrData: string = '';
-
-  constructor(private firebaseService: FirebaseService) {
-    this.reservations$ = this.firebaseService.getAll().valueChanges();
-  }
+export class QrGeneratorComponent implements OnInit{
+  reservations?: Reservation[];
+  
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
+      this.retrieveReservations();
   }
 
-  generateQrCode(reservation: Reservation): void {
-    this.selectedReservation = reservation;
-    this.qrData = JSON.stringify(reservation);
+  
+  retrieveReservations(): void {
+    this.firebaseService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.reservations = data;
+    });
+  }
+
+  generateQRCode(data: any): string {
+    return JSON.stringify(data); 
   }
 }
