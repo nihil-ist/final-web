@@ -11,6 +11,14 @@
             (change)="saveDepartureDate($event)" required formControlName="departureDate">
     </div>
     <div class="form-group mb-4">
+        <label for="arrivalTime">Arrival time:</label>
+        <select name="arrivalTime" id="arrivalTime" class="form-select" [(ngModel)]="reservation.arrivalTime" required formControlName="arrivalTime">
+            <option value="12:00">12:00pm</option>
+            <option value="13:00">13:00pm</option>
+            <option value="14:00">14:00pm</option>
+        </select>
+    </div>
+    <div class="form-group mb-4">
         <label for="name">Full Name</label>
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="reservation.name" required formControlName="name">
     </div>
@@ -21,12 +29,18 @@
     <div class="form-group mb-4">
         <label for="price">Price</label>
         <input type="text" class="form-control" id="price" name="price" [(ngModel)]="reservation.price"
-            placeholder="{{apartment.price}} USD night"  formControlName="price">
+            placeholder="{{apartment.price}} USD night" disabled>
     </div>
-    <div class="form-group mb-5">
+    <div class="form-group mb-4">
         <label for="address">Address</label>
         <input type="text" class="form-control" id="address" name="address" [(ngModel)]="reservation.address"
-            placeholder="{{apartment.address}}" formControlName="address">
+            placeholder="{{apartment.address}}" disabled>
+    </div>
+    <div class="form-group mb-5">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkbox" required formControlName="confirmation">
+            <label class="form-check-label" for="checkbox">I agree to the terms and conditions</label>
+        </div>
     </div>
     <div class="form-group mb-4">
         <mat-grid-list cols="4" [gutterSize]="'1%'">
@@ -45,7 +59,7 @@
         <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button data-bs-dismiss="modal" aria-label="Close"
             color="primary">Close</button>
         <button style="padding: 20px 50px; font-size: 1.2em;" mat-flat-button color="primary"
-            type="submit">Submit</button>
+            type="submit" [disabled]="!reservationForm.valid">Submit</button>
     </div>
 
 </form>
