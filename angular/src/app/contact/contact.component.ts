@@ -17,7 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class ContactComponent {
 formulario: FormGroup;
-  resultado: any;
 
   constructor(private fb: FormBuilder, private mailService: MailService) {
     this.formulario = this.fb.group({
@@ -38,7 +37,6 @@ formulario: FormGroup;
       };
 
       this.mailService.sendInfo(data).subscribe(response => {
-        this.resultado = response;
       }, error => {
         console.error('Error:', error);
       });
