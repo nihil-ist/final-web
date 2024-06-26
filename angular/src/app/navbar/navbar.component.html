@@ -1,39 +1,42 @@
+<div class="sticky-top">
+  <mat-toolbar color="primary" class=" nav-container"> 
+      <div class="navbar-brand pointer" [routerLink]="['/home']" routerLinkActive="router-link-active">
+          <img src="assets/img/logo.png" alt="" width="50">
+          <span>the apartment</span>
+      </div>
+      
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+          <i class="fas fa-bars"></i>
+      </button>
+      
+      <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
+          <div class="custom-select-wrapper">
+              <i class="fas fa-globe select-icon"></i>
+              <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
+                  <option value="USD">USD</option>
+                  <option value="MXN">MXN</option>
+                  <option value="EUR">EUR</option>
+              </select>
+          </div>
 
+          <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">home</a>  
+          <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active">apartments</a>  
+          <a mat-button [routerLink]="['/reservations']" routerLinkActive="router-link-active">bookings</a>
+          <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active">gallery</a>  
+          <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">about</a>
+          <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active">contact us</a>
+        
+          @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
+            <!-- opciones para admin -->
+          }
 
-<div class="sticky-top" style="background-color: #2d2a2e;">
-    <mat-toolbar color="primary" style="border-top-left-radius: 25px; border-top-right-radius: 25px; " class="shadow-lg"> 
-        &nbsp;&nbsp;
-        <div class="pointer" [routerLink]="['/home']" routerLinkActive="router-link-active" >
-            <img src="assets/img/logo.png" alt="" width="50">
-            &nbsp;
-            <span>the apartment</span>  
-        </div>
-        
-        <div class="spacer"></div>
-        
-        <!-- pipe de divisas -->
-        
-        <div class="custom-select-wrapper">
-          <i class="fas fa-globe select-icon"></i>
-          <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
-            <option value="USD">USD</option>
-            <option value="MXN">MXN</option>
-            <option value="EUR">EUR</option>
-          </select>
-        </div>
+          @if (logged.getIsLogged()=='') {
+            <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active">sign in</a>
+            <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active">sign up</a>
+          } @else {
+            <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active">{{username}}</a>
+          }
 
-        <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a>  
-        <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active" >apartments</a>  
-        <a mat-button [routerLink]="['/reservations']" routerLinkActive="router-link-active" >bookings</a>
-        <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active" >gallery</a>  
-        <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active" >about</a>
-        <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active" >contact us</a>
-        <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active" >sign in</a>
-        <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active" >sign up</a>
-        <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{username}}</a>
-        &nbsp;&nbsp;
-    </mat-toolbar>
+      </div>
+  </mat-toolbar>
 </div>
-
-
-

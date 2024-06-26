@@ -21,3 +21,19 @@ input, textarea {
     border: none;
     border-bottom: 1px solid #F44336;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #_2bg {
+    min-width: 90vw;
+  }
+  
+  .container {
+    height: auto;
+    padding: 20px;
+  }
+
+  .btn-dark {
+    padding: 8px 30px;
+  }
+}

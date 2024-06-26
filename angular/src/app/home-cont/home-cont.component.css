@@ -1,77 +1,124 @@
-.container-rec {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    grid-gap: 20px; 
+/* Estilos generales */
+.paddingx {
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
-
-
-.grid-rec {
-    background-color: rgba(0, 0, 0, 0.06);
-    padding: 20px;
+p, ul, h4 {
     text-align: center;
-    /* border: 1px solid #ccc; */
-    border-radius: 10px;
-
-    display: flex;
-    justify-content: center;
 }
 
-.title1{
-    /* text-align: center; */
+.py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.title1 {
+    text-align: center;
     font-weight: bold;
 }
 
-.imgrec{
-    width: 100px;
-    height: auto;
+.container-rec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 2%;
+}
 
+.grid-rec {
+    background-color: rgba(0, 0, 0, 0.06);
+    padding: 2%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.imgrec {
+    width: 100%;
+    height: auto;
 }
 
 .greySection {
     background-color: rgba(0, 0, 0, 0.06);
 }
 
-.grid-rec:hover{
-    background-color: #F44336;
-}
-
 .container-video {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .grid-video {
-    /* padding: 20px; */
+    width: 100%;
+    padding: 0 2%;
     text-align: center;
-
 }
 
-
-.title2{
-    text-align: center;
-    /* font-size: 16px; */
-}
-
-.text-video{
-    text-align: left;
-    
-}
-
-li{
+.text-video {
     text-align: left;
 }
-
-
-
-
-.imgcar{
-    width: 700px;
-}
-
 
 .carousel-caption {
-    padding: 5% 10% 2% 10%;
+    padding: 5% 2%;
     background-color: rgba(0, 0, 0, 0.3);
-    -webkit-text-fill-color: white;
+    color: white;
+}
+
+/* Estilos adicionales */
+.example-card {
+    width: calc(33.33% - 2%);
+    margin-bottom: 2%;
+}
+
+.video-responsive {
+    width: calc(50% - 2%);
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 575px) {
+    .paddingx {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .container-rec .grid-rec,
+    .container-video .grid-video,
+    .example-card {
+        width: 100%;
+        margin-bottom: 4%;
+    }
+
+    .video-responsive {
+        width: 100%;
+    }
+}
+
+/* Estilos para pantallas medianas */
+@media (min-width: 576px) and (max-width: 991px) {
+    .container-rec .grid-rec,
+    .container-video .grid-video,
+    .example-card {
+        width: calc(50% - 2%);
+        margin-bottom: 2%;
+    }
+
+    .video-responsive {
+        width: calc(50% - 2%);
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 992px) {
+    .container-rec .grid-rec,
+    .container-video .grid-video,
+    .example-card {
+        width: calc(33.33% - 2%);
+        margin-bottom: 2%;
+    }
+
+    .video-responsive {
+        width: calc(50% - 2%);
+    }
 }
