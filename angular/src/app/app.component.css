@@ -10,4 +10,6 @@ main {
     flex: 1;
 }
 
-  
+.high-contrast {
+    filter: grayscale(100%);
+}
