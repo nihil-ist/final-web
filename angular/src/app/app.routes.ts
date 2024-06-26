@@ -10,6 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginnComponent } from './loginn/loginn.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DbqueriesComponent } from './dbqueries/dbqueries.component';
+import { UserreservationsComponent } from './userreservations/userreservations.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -23,5 +24,6 @@ export const routes: Routes = [
     {path: 'signin', component: LoginnComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'database', component: DbqueriesComponent},
+    {path: 'myreservations', component: UserreservationsComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
