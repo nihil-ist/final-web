@@ -47,7 +47,7 @@ export class GraphComponent implements OnInit{
           scales: {
             x: {
               ticks: {
-                color: 'white', // Color blanco para los números del eje X
+                color: 'white', 
                 font: {
                   size: 14
                 }
@@ -55,7 +55,7 @@ export class GraphComponent implements OnInit{
             },
             y: {
               ticks: {
-                color: 'white', // Color blanco para los números del eje Y
+                color: 'white', 
                 font: {
                   size: 14
                 }
@@ -65,7 +65,7 @@ export class GraphComponent implements OnInit{
           plugins: {
             legend: {
               labels: {
-                color: 'white', // Color de las etiquetas (legendas)
+                color: 'white', 
                 font: {
                   size: 14
                 }
