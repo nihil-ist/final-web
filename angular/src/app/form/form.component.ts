@@ -54,9 +54,10 @@ export class FormComponent {
   reservationForm = new FormGroup({
     arrivalDate: new FormControl('', [Validators.required]),
     departureDate: new FormControl('', [Validators.required]),
-    //arrivalTime: new FormControl('', [Validators.required]),
+    arrivalTime: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required, Validators.minLength(10)])
+    phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    confirmation: new FormControl('', [Validators.required])
   });
 
   tiles: Tile[] = [
@@ -138,6 +139,7 @@ export class FormComponent {
       this.firebase.create(this.reservation).then(() => {
       console.log('Created new user successfully!');
       this.submitted = true;
+      this.showAlertgood(); // Display success alert
     });
     } else {
       this.result = "Make sure the user's data is correct";
@@ -154,8 +156,6 @@ export class FormComponent {
       address: '',
       nights: 0,
     };
-
-    this.showAlertgood(); // Display success alert
   }
 
   retrieveReservations(): void {

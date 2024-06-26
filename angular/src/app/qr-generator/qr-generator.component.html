@@ -1,0 +1,14 @@
+<div>
+    <h1>QR generados</h1>
+    <ul>
+      <li *ngFor="let reservation of reservations$ | async">
+        {{ reservation.name }} - {{ reservation.date }}
+        <button (click)="generateQrCode(reservation)">Generar QR</button>
+      </li>
+    </ul>
+  
+    <div *ngIf="qrData">
+      <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  </div>
+  

@@ -1,0 +1,64 @@
+input, textarea {
+    background: none;
+    border: none; 
+    border-radius: 0;
+    border-bottom: 1px solid #F44336;
+    color: white
+  }
+  
+  input:focus > label {
+    background: none;
+    color: white
+  }
+  
+  input:focus {
+    background: none;
+    color: white
+  }
+  
+  .form-label::after{
+    background-color: transparent !important;
+  }
+  
+  .input:focus * {
+    outline: 1px solid white;
+    border: 1px solid white;
+  }
+  
+  .custom-border:focus {
+    border-color: #fff; 
+    /* box-shadow: 0 0 0 0.25rem rgba(244, 67, 54, 0.25); */
+    outline: none; 
+    box-shadow: none;
+  }
+  
+  label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  .error-message {
+    color:#F44336;
+  }
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    #_2bg {
+      min-width: 90vw;
+    }
+    
+    .container {
+      height: auto;
+      padding: 20px;
+    }
+  
+    .btn-dark {
+      padding: 8px 30px;
+    }
+  }
+  
+  #recaptcha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

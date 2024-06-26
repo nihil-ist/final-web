@@ -11,6 +11,7 @@ import { LoginnComponent } from './loginn/loginn.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DbqueriesComponent } from './dbqueries/dbqueries.component';
 import { UserreservationsComponent } from './userreservations/userreservations.component';
+import { SmsLoginComponent } from './sms-login/sms-login.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path: 'register', component: SignuppComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'signin', component: LoginnComponent},
+    {path: 'smslogin', component: SmsLoginComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'database', component: DbqueriesComponent},
     {path: 'myreservations', component: UserreservationsComponent},
