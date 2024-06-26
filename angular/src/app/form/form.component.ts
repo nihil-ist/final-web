@@ -140,22 +140,12 @@ export class FormComponent {
       address:this.reservation.address,
       nights:this.reservation.nights
     };
-    if(this.reservationForm.valid){
+    if(this.reservationForm.valid && this.roomAvailable(this.reservation.arrivalDate, this.reservation.departureDate)){
       this.firebase.create(this.reservation).then(() => {
       console.log('Created new user successfully!');
       this.submitted = true;
       this.showAlertgood(); // Display success alert
-      console.log(`Data received:
-                Arrival Date: ${data.arrivalDate}
-                Departure Date: ${data.departureDate}
-                Arrival Time: ${data.arrivalTime}
-                Name: ${data.name}
-                Phone: ${data.phone}
-                Email : ${data.email}
-                Price : ${data.price}
-                Address : ${data.address}
-                Nights : ${data.nights}
-        `)
+
       this.mailService.sendCita(data).subscribe(response => {
       }, error => {
         console.error('Error:', error);
@@ -164,7 +154,6 @@ export class FormComponent {
     } else {
       this.result = "Make sure the user's data is correct";
     }
-    console.log('after submit');
     this.reservation = {
       arrivalDate: null,
       departureDate: null,
@@ -249,6 +238,8 @@ export class FormComponent {
     let available = true;
 
     this.reservations.forEach((reservation) => {
+      if(reservation.address !== this.apartment.address) return;
+
       if ( (arriveDate >= reservation.arrivalDate && arriveDate <= reservation.departureDate) ||
           (departureDate >= reservation.arrivalDate && departureDate <= reservation.departureDate) ){
         available = false;
