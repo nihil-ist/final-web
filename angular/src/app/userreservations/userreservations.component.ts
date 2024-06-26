@@ -7,11 +7,12 @@ import { Reservation } from '../models/reservation.model';
 import { map } from 'rxjs';
 import { ReservationsDetailsComponent } from '../reservations-details/reservations-details.component';
 import { Router } from '@angular/router';
+import { QrGeneratorComponent } from '../qr-generator/qr-generator.component';
 
 @Component({
   selector: 'app-userreservations',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, ReservationsDetailsComponent],
+  imports: [NavbarComponent, CommonModule, ReservationsDetailsComponent, QrGeneratorComponent],
   templateUrl: './userreservations.component.html',
   styleUrl: './userreservations.component.css'
 })

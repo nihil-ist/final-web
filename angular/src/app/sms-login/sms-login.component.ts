@@ -1,21 +1,27 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaVerifier, getAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoggedService } from '../services/logged.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../services/user.service';
+import { map } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-sms-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NavbarComponent, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, NavbarComponent, CommonModule, RouterModule],
   templateUrl: './sms-login.component.html',
   styleUrl: './sms-login.component.css',
 })
-export class SmsLoginComponent {
+export class SmsLoginComponent implements OnInit {
+
+  users: User[] = [];
+
   form: FormGroup = this.fb.group({
     celular: ['', Validators.required],
   });
@@ -29,11 +35,14 @@ export class SmsLoginComponent {
     private auth: AuthService,
     private ngZone: NgZone,
     private logged: LoggedService,
-    private router: Router
+    private router: Router,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
     // this.confirmSMS = false;
+    this.retrieveUsers();
+
     this.ngZone.runOutsideAngular(() => {
       this.recaptchaVerifier = new RecaptchaVerifier(
         getAuth(),
@@ -53,6 +62,17 @@ export class SmsLoginComponent {
     });
   }
 
+  retrieveUsers(): void {
+    this.userService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.users = data;
+    });
+  }
 
   confirmSMS: boolean = false;
 
@@ -64,22 +84,34 @@ export class SmsLoginComponent {
   onSubmit() {
     console.log('Form submitted');
     if (this.form.valid) {
-      const rawForm = this.form.getRawValue();
 
-      this.auth
-        .loginWithSms(rawForm.celular, this.recaptchaVerifier)
-        .subscribe({
-          next: () => {
-            this.confirmSMS = true;
-            console.log('Message sent!');
-            // Handle the logic here
-          },
-          error: (error: any) => {
-            console.log('No message');
-            console.error('Error:', error);
-            // Handle the error here
-          },
-        });
+      
+
+      const rawForm = this.form.getRawValue();
+      console.log("qpddd");
+
+      for (const user of this.users) {
+        if (rawForm.celular == user.phone) {
+          this.auth
+          .loginWithSms(rawForm.celular, this.recaptchaVerifier)
+          .subscribe({
+            next: () => {
+              console.log("hola");
+              
+              this.confirmSMS = true;
+              console.log('Message sent!');
+              // Handle the logic here
+            },
+            error: (error: any) => {
+              console.log('No message');
+              console.error('Error:', error);
+              // Handle the error here
+            },
+          });
+        }
+      }
+
+      
     }
   }
 
@@ -89,8 +121,15 @@ export class SmsLoginComponent {
     this.auth.verifySmsCode(rawForm.SMScode).subscribe({
       next: () => {
         console.log('SMS code confirmed!');
-        this.logged.loggedIn(rawFormPhone.celular);
-        this.router.navigate(['/home']);
+        
+        for (const user of this.users) {
+          if (rawFormPhone.celular == user.phone && user.email) {
+            console.log(user.email);
+            console.log(user.phone);
+            this.logged.loggedIn(user.email);
+            this.router.navigate(['/home']);
+          }
+        }
 
         // Handle the logic here
       },

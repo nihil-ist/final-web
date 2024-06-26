@@ -30,7 +30,7 @@ export class SignuppComponent {
     fullname: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', Validators.required],
-    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(14)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
   }, { validators: passwordMismatchValidator });

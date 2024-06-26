@@ -4,11 +4,12 @@ import { Reservation } from '../models/reservation.model';
 import { Observable, map } from 'rxjs';
 import { QRCodeModule } from 'angularx-qrcode';
 import { data } from 'jquery';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-qr-generator',
   standalone: true,
-  imports: [QRCodeModule],
+  imports: [QRCodeModule, NavbarComponent],
   templateUrl: './qr-generator.component.html',
   styleUrl: './qr-generator.component.css'
 })

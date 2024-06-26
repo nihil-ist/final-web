@@ -193,3 +193,8 @@
 .nav-item .btn-group .nav-link.dropdown-toggle img {
   margin-right: 5px; 
 }
+
+.no-markers {
+  list-style-type: none;
+  padding-left: 0;
+}

@@ -1,20 +1,20 @@
 <app-navbar></app-navbar>
 
-
     <div class="paddingx my-5">
     <div class="backgroundd shadow-lg">
         
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <h1 class="fw-bold my-5">sms sign in</h1>
             <div class="form-floating mb-5">
-                <input type="text" id="celular" class="form-control" placeholder="celular" formControlName="celular">
-                <label for="celular" class="form-label text-white">phone number</label>
+                <input type="text" id="celular" class="form-control custom-border" placeholder="celular" formControlName="celular">
+                <label for="celular" class="form-label text-white">phone ( e.g. +521231234567)</label>
             </div>
+            <div id="recaptcha-container" class="my-5"></div>
             <div class="text-center mb-3">
                 <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">send message</button>
             </div>
         </form>
-        <div id="recaptcha-container" style="margin-top: 30px;"></div>
+        <h5 class="text-center mt-5" style="color: rgba(255, 255, 255, 0.8)">sign in with <a [routerLink]="['/signin']" routerLinkActive="router-link-active" style="color: #F44336;">email</a></h5>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
             <form [formGroup]="formConfirmationSMS" (ngSubmit)="onConfirm()">
                 <h1 class="fw-bold my-5">verification</h1>
                 <div class="form-floating mb-5">
-                    <input type="text" id="SMScode" class="form-control" placeholder="Verificacion" formControlName="SMScode">
+                    <input type="text" id="SMScode" class="form-control custom-border" placeholder="Verificacion" formControlName="SMScode">
                     <label for="SMScode" class="form-label text-white">enter code</label>
                 </div>
                 <div class="text-center mb-3">

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'; 
@@ -20,6 +20,10 @@ import { SpeechService } from '../services/speech.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit  {
+
+  @Input()
+  audioText!: string;
+
 
   highContrast = false;
   fontSize = 16;
@@ -77,9 +81,9 @@ export class NavbarComponent implements OnInit  {
     });
   }
 
-  readText(text: string): void {
+  readText(): void {
     if (this.selectedVoice) {
-      this.speechService.speak(text, this.selectedVoice);
+      this.speechService.speak(this.audioText, this.selectedVoice);
       this.isSpeaking = true;
       this.isPaused = false;
     } else {
