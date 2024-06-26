@@ -10,6 +10,7 @@ import { CurrencyService } from '../service-divisa/currency.service';
 import { LoggedService } from '../services/logged.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SpeechService } from '../services/speech.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,11 @@ export class NavbarComponent implements OnInit  {
   highContrast = false;
   fontSize = 16;
   lineHeight = 1.5;
+  isPaused = false; 
+  isSpeaking = false; 
+  
+  voices: SpeechSynthesisVoice[] = [];
+  selectedVoice?: SpeechSynthesisVoice;
 
   toggleContrast() {
     this.highContrast = !this.highContrast;
@@ -70,6 +76,33 @@ export class NavbarComponent implements OnInit  {
       (el as HTMLElement).style.lineHeight = `${this.lineHeight}`;
     });
   }
+
+  readText(text: string): void {
+    if (this.selectedVoice) {
+      this.speechService.speak(text, this.selectedVoice);
+      this.isSpeaking = true;
+      this.isPaused = false;
+    } else {
+      console.error('No voice selected or voices not loaded');
+    }
+  }
+
+  togglePauseResume(): void {
+    if (this.speechService.isPaused()) {
+      this.speechService.resume();
+      this.isPaused = false;
+    } else {
+      this.speechService.pause();
+      this.isPaused = true;
+    }
+  }
+
+  stopReading(): void {
+    this.speechService.stop();
+    this.isSpeaking = false;
+    this.isPaused = false;
+  }
+
   
   srch:string="";
   selectedCurrency: string = 'USD';
@@ -87,10 +120,20 @@ export class NavbarComponent implements OnInit  {
     return false;
   }
 
-  constructor(public currencyService: CurrencyService, public logged: LoggedService) {}
+  constructor(public currencyService: CurrencyService, public logged: LoggedService, private speechService: SpeechService) {}
 
   ngOnInit() {
-    this.selectedCurrency = this.currencyService.getCurrentCurrency().symbol;  
+    this.selectedCurrency = this.currencyService.getCurrentCurrency().symbol; 
+    this.loadVoices();
+  }
+
+  private loadVoices() {
+    this.voices = this.speechService.getVoices();
+    if (this.voices.length === 0) {
+      setTimeout(() => this.loadVoices(), 100);
+    } else {
+      this.selectedVoice = this.speechService.getEnglishVoice() || this.voices[0];
+    }
   }
 
   username = this.logged.getIsLogged();
