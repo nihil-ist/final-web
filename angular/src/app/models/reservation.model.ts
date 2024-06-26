@@ -1,6 +1,11 @@
 export class Reservation {
-    name?: string;
-    email?: string;
-    account?: string;
-    password?: string;
+  arrivalDate?: Date | null;
+  departureDate?: Date | null;
+  arrivalTime?: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  price?: string;
+  address?: string;
+  nights?: number;
 }
