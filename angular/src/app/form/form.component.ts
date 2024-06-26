@@ -39,7 +39,7 @@ export interface Tile {
     MatInputModule,
     MatGridListModule,
     SweetAlert2Module,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
@@ -140,20 +140,21 @@ export class FormComponent {
       address:this.reservation.address,
       nights:this.reservation.nights
     };
-    if(this.reservationForm.valid && this.roomAvailable(this.reservation.arrivalDate, this.reservation.departureDate)){
+    if(this.reservationForm.valid){
       this.firebase.create(this.reservation).then(() => {
-      console.log('Created new user successfully!');
-      this.submitted = true;
-      this.showAlertgood(); // Display success alert
-
-      this.mailService.sendCita(data).subscribe(response => {
-      }, error => {
-        console.error('Error:', error);
+        console.log('Created new user successfully!');
+        this.submitted = true;
+        this.showAlertgood(); // Display success alert
+  
+        this.mailService.sendCita(data).subscribe(response => {
+        }, error => {
+          console.error('Error:', error);
+        });
       });
-    });
     } else {
       this.result = "Make sure the user's data is correct";
     }
+    console.log('after submit');
     this.reservation = {
       arrivalDate: null,
       departureDate: null,
@@ -165,7 +166,6 @@ export class FormComponent {
       address: '',
       nights: 0,
     };
-    
   }
 
   retrieveReservations(): void {
@@ -232,21 +232,6 @@ export class FormComponent {
       }
     }
     return true;
-  }
-
-  roomAvailable(arriveDate: Date, departureDate: Date): boolean {
-    let available = true;
-
-    this.reservations.forEach((reservation) => {
-      if(reservation.address !== this.apartment.address) return;
-
-      if ( (arriveDate >= reservation.arrivalDate && arriveDate <= reservation.departureDate) ||
-          (departureDate >= reservation.arrivalDate && departureDate <= reservation.departureDate) ){
-        available = false;
-      }
-    });
-
-    return available;
   }
 
   //  alerts
