@@ -1,7 +1,13 @@
-.paddingx {
+/* .paddingx {
     padding: 0 10px;
+} */
+
+.masonry-container {
+    display: flex;
+    justify-content: center;
 }
 
+/* 
 .py-5 {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -21,8 +27,8 @@
 
 .fw-bold {
     font-weight: bold;
-}
-
+} */
+/* 
 @media (max-width: 767px) {
     .paddingx {
         padding: 0 5px;
@@ -77,4 +83,4 @@
     .masonry-item {
         width: 25%;
     }
-}
+} */

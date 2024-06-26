@@ -2,6 +2,20 @@
     <div class="edit-form">
       <h2 class="mb-3">reservation</h2>
       <form>
+        @if (logged.getIsLogged() == 'theapartmentbnb@gmail.com') {
+            <div class="form-outline form-group form-floating mb-3 text-black">
+                <input type="text" class="form-control custom-border" id="name" value="{{currentReservation.name}}" name="name" placeholder="name" readonly>
+                <label class="form-label" for="name">name</label>
+            </div>
+            <div class="form-outline form-group form-floating mb-3 text-black">
+                <input type="text" class="form-control custom-border" id="email" value="{{currentReservation.email}}" name="email" placeholder="email" readonly>
+                <label class="form-label" for="email">email</label>
+            </div>
+            <div class="form-outline form-group form-floating mb-3 text-black">
+                <input type="text" class="form-control custom-border" id="phone" value="{{currentReservation.phone}}" name="phone" placeholder="phone" readonly>
+                <label class="form-label" for="phone">phone</label>
+            </div>
+        }
         <div class="form-group form-floating mb-3 text-black">
             <input type="text" class="form-control custom-border" id="address" [(ngModel)]="currentReservation.address" name="address" placeholder="address" readonly>
             <label class="form-label" label for="address">address</label>
@@ -24,9 +38,9 @@
         </div>
         <div class="form-outline form-group form-floating mb-3 text-black">
             <input type="text" class="form-control custom-border" id="priceNight" value="{{currentReservation.price}}" name="priceNight" placeholder="priceNight" readonly>
-            <label class="form-label" for="priceNight">Price per night</label>
+            <label class="form-label" for="priceNight">price per night</label>
         </div>
-    
+        
       </form>
     
       <div class="text-center mt-3">

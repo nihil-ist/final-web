@@ -1,7 +1,16 @@
-.txt-1{
+/* .txt-1{
     padding-inline: 160px;
 }
 
 .alm{
     padding-block-end: 50px;
+} */
+
+.bg-danger {
+    background-color: #f44336 !important;
+    color: white;
+}
+ 
+.bg-dark {
+    background-color: #2d2a2e !important;
 }

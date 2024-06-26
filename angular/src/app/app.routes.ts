@@ -28,6 +28,6 @@ export const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'database', component: DbqueriesComponent},
     {path: 'myreservations', component: UserreservationsComponent},
-    {path: 'help_faq', component: AyudaFAQComponent},
+    {path: 'faq', component: AyudaFAQComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

@@ -1,10 +1,15 @@
 <app-navbar></app-navbar>
 
 <div class="paddingx my-5">
+    <h1>my profile</h1>
+    <h4 style="color: rgba(255, 255, 255, 0.7)">{{logged.getIsLogged()}}</h4>
+</div>
+
+<div class="paddingx my-5">
     <div class="backgroundd shadow-lg">
         <form id="logoutForm" (click)="OnLogOut()">
             <div class="text-center my-5">
-                <button id="logout-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">Log out</button>
+                <button id="logout-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">log out</button>
             </div>
         </form>
     </div>
@@ -14,7 +19,7 @@
     <div class="backgroundd shadow-lg">
         <form id="reservationsForm" (click)="OnReservations()">
             <div class="text-center my-5">
-                <button id="reservations-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">Reservations</button>
+                <button id="reservations-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">reservations</button>
             </div>
         </form>
     </div>

@@ -1,5 +1,5 @@
 import { Component,Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { Apartment } from '../interfaces/apartment';
 import { ApartmentsService } from '../apartmentsService/apartments.service';
 import {MatGridListModule} from '@angular/material/grid-list'; 
@@ -22,6 +22,7 @@ import {
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CurrencyService } from '../service-divisa/currency.service';
 import { Subscription } from 'rxjs';
+import { LoggedService } from '../services/logged.service';
 
 
 export interface Tile {
@@ -49,7 +50,7 @@ export class SingleApartmentComponent implements OnInit, OnDestroy{
   priceInCurrentCurrency: string = '';
   private currencySubscription: Subscription | null = null;
 
-  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog, public currencyService: CurrencyService){
+  constructor(public apartmentService:ApartmentsService, public activatedRoute:ActivatedRoute, public dialog: MatDialog, public currencyService: CurrencyService, public logged: LoggedService, public router: Router){
     this.activatedRoute.params.subscribe(params=>
       {
         this.apartment = apartmentService.apartments[params['id']];
@@ -91,6 +92,12 @@ export class SingleApartmentComponent implements OnInit, OnDestroy{
   //   // Formatear el precio con el símbolo de la divisa
   //   this.priceInCurrentCurrency = `${newPrice.toFixed(2)} ${currentCurrency.symbol}`;
   // }
+
+  checklogged() {
+    if (this.logged.getIsLogged() == '') {
+      this.router.navigate(['/home']);
+    }
+  }
 
   updatePriceInCurrentCurrency() {
     const currentCurrency = this.currencyService.getCurrentCurrency();

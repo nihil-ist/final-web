@@ -1,25 +1,23 @@
 <app-navbar></app-navbar>
-<div class="my-5 py-5">
-  <div class="container">
-    <div class="p-5 d-flex flex-column" id="_2bg">
-      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-        <h1 class="text-center mb-5 fw-bold mt-3">Contact Us</h1>
-        <div class="form-floating mb-5 mx-5">
-          <input type="text" id="subject" class="form-control" placeholder="subject" formControlName="subject">
-          <label for="subject">Subject</label>
+<div class="paddingx my-5">
+  <div class="backgroundd shadow-lg">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <h1 class="fw-bold my-5">contact us</h1>
+      <div class="form-floating mb-5 mx-5">
+        <input type="text" id="subject" class="form-control custom-border" placeholder="subject" formControlName="subject">
+        <label  class="form-label" for="subject">subject</label>
+      </div>
+      <div class="form-floating mb-5 mx-5">
+        <input type="email" id="email" class="form-control custom-border" placeholder="email" formControlName="email">
+        <label class="form-label" for="email">email</label>
+      </div>
+      <div class="form-floating mb-5 mx-5">
+        <textarea class="form-control custom-border" id="description" placeholder="description" style="height: 100px" formControlName="description"></textarea>
+        <label class="form-label" for="description">description</label>
+      </div>
+        <div class="text-center mb-3">
+          <button type="submit" class="btn btn-dark" [disabled]="!formulario.valid" style="background-color: #F44336; color: white; border: none;">Submit</button>
         </div>
-        <div class="form-floating mb-5 mx-5">
-          <input type="email" id="email" class="form-control" placeholder="email" formControlName="email">
-          <label for="email">Email</label>
-        </div>
-        <div class="form-floating mb-5 mx-5">
-          <textarea class="form-control" id="description" placeholder="description" style="height: 100px" formControlName="description"></textarea>
-          <label for="description">Description</label>
-        </div>
-          <div class="text-center mb-3">
-            <button type="submit" class="btn btn-dark" [disabled]="!formulario.valid" style="background-color: #F44336; color: white; border: none;">Submit</button>
-          </div>
-      </form>
-    </div>
+    </form>
   </div>
 </div>

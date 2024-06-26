@@ -60,8 +60,15 @@
                         
                         <hr class="my-4 mx-5">
                         <div class="text-center">
-                            <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" mat-raised-button color="primary">reserve</button>
+                            @if (logged.getIsLogged() == '') {
+                                <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" mat-raised-button color="primary" (click)="checklogged()" disabled>reserve</button>
+                                <h5><span>sign in to reserve</span></h5>
+                            } @else {
+                                <button class="mb-4" style="padding: 20px 50px; font-size: 1.2em;" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" mat-raised-button color="primary" (click)="checklogged()">reserve</button>
+                            }
+                            
                         </div>
 
                     </mat-card-content>

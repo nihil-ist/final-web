@@ -13,24 +13,25 @@
       </button>
 
       <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
-          @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
-            <!-- opciones para admin -->
-          }
 
-          @if (logged.getIsLogged()=='') {
-            <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active">sign in</a>
-            <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active">sign up</a>
-          } @else {
-            <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active">{{username}}</a>
-          }
-
-          
         <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">home</a>  
+        @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
+          <a mat-button [routerLink]="['/database']" routerLinkActive="router-link-active">database</a>
+          <a mat-button [routerLink]="['/myreservations']" routerLinkActive="router-link-active">reservations</a>
+        }
         <a mat-button [routerLink]="['/apartments']" routerLinkActive="router-link-active">apartments</a>  
-        <a mat-button [routerLink]="['/reservations']" routerLinkActive="router-link-active">bookings</a>
+        <a mat-button [routerLink]="['/contact']" routerLinkActive="router-link-active">contact</a>
         <a mat-button [routerLink]="['/gallery']" routerLinkActive="router-link-active">gallery</a>  
+        <a mat-button [routerLink]="['/faq']" routerLinkActive="router-link-active">faq</a>
         <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">about</a>
-        &nbsp;&nbsp;&nbsp;
+
+        @if (logged.getIsLogged()=='') {
+          <a mat-button [routerLink]="['/signin']" routerLinkActive="router-link-active">sign in</a>
+          <!-- <a mat-button [routerLink]="['/register']" routerLinkActive="router-link-active">sign up</a> -->
+        } @else {
+          <a *ngIf="!(logged.getIsLogged()=='')" mat-button [routerLink]="['/profile']" routerLinkActive="router-link-active">{{username}}</a>
+        }
+
         <div><div class="custom-select-wrapper">
             <i class="fas fa-globe select-icon"></i>
             <select class="custom-select" [(ngModel)]="selectedCurrency" (change)="selectCurrency($event)">
@@ -40,6 +41,9 @@
             </select>
           </div>
         </div>
+
+       
+
         <li class="nav-item dropdown">
             <div class="btn-group dropstart">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,6 +64,7 @@
                 </ul>
             </div>
         </li>
+        
       </div>
     </mat-toolbar>
 </div>

@@ -6,6 +6,8 @@ import { map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ApartmentService2 } from '../services/apartment-service2.service';
 import { Apartment } from '../models/apartment.model';
+import { Router } from '@angular/router';
+import { LoggedService } from '../services/logged.service';
 
 @Component({
   selector: 'app-dbqueries',
@@ -17,10 +19,13 @@ import { Apartment } from '../models/apartment.model';
 export class DbqueriesComponent implements OnInit{
   apartments?: Apartment[];
   
-  constructor(private firebaseService: ApartmentService2) { }
+  constructor(private firebaseService: ApartmentService2, public router: Router, public logged: LoggedService) { }
 
   ngOnInit(): void {
       this.retrieveReservations();
+      if (this.logged.getIsLogged() !== 'theapartmentbnb@gmail.com') {
+        this.router.navigate(['/home']);
+      }
   }
 
   

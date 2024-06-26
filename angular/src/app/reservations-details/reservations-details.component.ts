@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Reservation } from '../models/reservation.model';
 import { FirebaseService } from '../services/firebase-service.service';
 import { MatButtonModule } from '@angular/material/button';
+import { LoggedService } from '../services/logged.service';
 
 @Component({
   selector: 'app-reservations-details',
@@ -22,7 +23,7 @@ export class ReservationsDetailsComponent implements OnInit, OnChanges {
   };
   message = '';
 
-  constructor(private reservationService: FirebaseService) { }
+  constructor(private reservationService: FirebaseService, public logged: LoggedService) { }
 
   ngOnInit(): void {
     this.message = '';

@@ -15,7 +15,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ProfileComponent implements OnInit{
 
-  constructor(private router: Router, private logged: LoggedService, private authService: AuthService) { }
+  constructor(private router: Router, public logged: LoggedService, private authService: AuthService) { }
 
   ngOnInit(): void {
     if (this.logged.getIsLogged()=='') {
