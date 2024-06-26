@@ -5,11 +5,12 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { CommonModule } from '@angular/common';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { Router } from '@angular/router';
+import { GraphComponent } from '../graph/graph.component';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, NgxMasonryModule, CommonModule],
+  imports: [NavbarComponent, FooterComponent, NgxMasonryModule, CommonModule, GraphComponent],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
 })

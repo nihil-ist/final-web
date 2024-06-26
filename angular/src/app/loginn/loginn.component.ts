@@ -4,18 +4,23 @@ import {
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { LoggedService } from '../services/logged.service';
-import { Router} from '@angular/router';
+import { Router, RouterModule} from '@angular/router';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
 import { timer } from 'rxjs';
 import Swal from 'sweetalert2'
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-loginn',
   standalone: false,
+  // imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent, RouterModule, CommonModule],
   templateUrl: './loginn.component.html',
   styleUrl: './loginn.component.css',
 })

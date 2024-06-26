@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase-service.service';
-import { Chart } from 'chart.js';
-import { Reservation } from '../models/reservation.model';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-graph',
@@ -16,25 +15,19 @@ export class GraphComponent implements OnInit{
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
-    this.firebaseService.getReservationsByMonth().subscribe((data: Reservation[]) => {
-      const months: string[] = []; // Array para nombres de meses
-      const reservations: number[] = []; // Array para contar reservas por mes
+    this.firebaseService.getReservationsByMonth().subscribe((data: any) => {
+      const months: string[] = [];
+      const reservations: number[] = [];
 
-      // Agrupar reservas por mes
-      data.forEach((reservation: Reservation) => {
-        if (reservation.arrivalDate) {
-          const month = reservation.arrivalDate.getMonth(); // Obtener el mes (0-11)
-
-          if (months[month]) {
-            reservations[month]++;
-          } else {
-            months[month] = this.getMonthName(month); // Obtener nombre del mes
-            reservations[month] = 1;
-          }
+      Object.keys(data).forEach(key => {
+        const month = parseInt(key, 10); // convierte la clave en el num del mes
+        if (!isNaN(month)) {
+          months.push(this.getMonthName(month)); //nombre month
+          reservations.push(data[key]); // num reservas per month
         }
       });
 
-      // Crear el gráfico usando Chart.js
+      // crea el gráfico con chartjs
       this.chart = new Chart('canvas', {
         type: 'bar',
         data: {
@@ -43,16 +36,39 @@ export class GraphComponent implements OnInit{
             {
               label: 'Reservations per Month',
               data: reservations,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: '#f44336',
+              borderColor: '#f44336',
               borderWidth: 1
             }
           ]
         },
         options: {
           scales: {
+            x: {
+              ticks: {
+                color: 'white', // Color blanco para los números del eje X
+                font: {
+                  size: 14
+                }
+              }
+            },
             y: {
-              beginAtZero: true
+              ticks: {
+                color: 'white', // Color blanco para los números del eje Y
+                font: {
+                  size: 14
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: 'white', // Color de las etiquetas (legendas)
+                font: {
+                  size: 14
+                }
+              }
             }
           }
         }
@@ -63,7 +79,7 @@ export class GraphComponent implements OnInit{
   private getMonthName(monthNumber: number): string {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
-    return monthNames[monthNumber];
+    return monthNames[monthNumber - 1];
   }
 }
  

@@ -136,7 +136,7 @@ router.get('/reservations-by-month', async (req, res) => {
   
       for (const key in data) {
         const reservation = data[key];
-        const month = new Date(reservation.arrivalDate).getMonth() + 1; // Meses de 0 a 11, sumamos 1 para que sea de 1 a 12
+        const month = new Date(reservation.arrivalDate).getMonth() + 1; // Meses de 0 a 11 +1 para que sea de 1 a 12
         if (reservationsByMonth[month]) {
           reservationsByMonth[month]++;
         } else {
@@ -149,4 +149,5 @@ router.get('/reservations-by-month', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
+
 module.exports = router;

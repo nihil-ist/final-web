@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit{
 
   OnReservations(){
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/myreservations']);
     console.log('Reservations');
   }
 }
