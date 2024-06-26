@@ -6,11 +6,12 @@ import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoggedService } from '../services/logged.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sms-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NavbarComponent],
+  imports: [FormsModule, ReactiveFormsModule, NavbarComponent, CommonModule],
   templateUrl: './sms-login.component.html',
   styleUrl: './sms-login.component.css',
 })
@@ -18,6 +19,7 @@ export class SmsLoginComponent {
   form: FormGroup = this.fb.group({
     celular: ['', Validators.required],
   });
+  
 
   recaptchaVerifier!: RecaptchaVerifier;
 
@@ -31,7 +33,7 @@ export class SmsLoginComponent {
   ) {}
 
   ngOnInit() {
-
+    // this.confirmSMS = false;
     this.ngZone.runOutsideAngular(() => {
       this.recaptchaVerifier = new RecaptchaVerifier(
         getAuth(),
@@ -51,11 +53,13 @@ export class SmsLoginComponent {
     });
   }
 
+
+  confirmSMS: boolean = false;
+
   formConfirmationSMS: FormGroup = this.fb.group({
     SMScode: ['', Validators.required],
   });
   
-  confirmSMS: boolean = false;
   
   onSubmit() {
     console.log('Form submitted');
