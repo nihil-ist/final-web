@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit  {
 
   highContrast = false;
   fontSize = 16;
+  lineHeight = 1.5;
 
   toggleContrast() {
     this.highContrast = !this.highContrast;
@@ -31,15 +32,43 @@ export class NavbarComponent implements OnInit  {
   increaseFontSize(): void {
     if (this.fontSize < 24) {
       this.fontSize += 2;
-      document.body.style.fontSize = `${this.fontSize}px`;
+      this.applyStylesToBody();
     }
   }
   
   decreaseFontSize(): void {
     if (this.fontSize > 12) {
       this.fontSize -= 2;
-      document.body.style.fontSize = `${this.fontSize}px`;
+      this.applyStylesToBody();
     }
+  }
+
+  increaseLineHeight(): void {
+    if (this.lineHeight < 2.0) {
+      this.lineHeight += 0.1;
+      this.applyStylesToBody();
+    }
+  }
+
+  decreaseLineHeight(): void {
+    if (this.lineHeight > 1.0) {
+      this.lineHeight -= 0.1;
+      this.applyStylesToBody();
+    }
+  }
+
+  private applyStylesToBody() {
+    document.body.style.fontSize = `${this.fontSize}px`;
+    document.body.style.lineHeight = `${this.lineHeight}`;
+    this.updateAllElements();
+  }
+
+  private updateAllElements() {
+    const elements = document.querySelectorAll('*');
+    elements.forEach(el => {
+      (el as HTMLElement).style.fontSize = `${this.fontSize}px`;
+      (el as HTMLElement).style.lineHeight = `${this.lineHeight}`;
+    });
   }
   
   srch:string="";
