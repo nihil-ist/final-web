@@ -47,6 +47,7 @@ export class FormComponent {
   dialog1boolean: boolean = true;
   submitted = false;
   result!: string;
+  @Input() apartment!: Apartment;
 
   constructor(private firebase: FirebaseService,private logged:LoggedService) { }
 
@@ -72,8 +73,6 @@ export class FormComponent {
   futureReservations: Reservation[] = [];
 
   imageUrl: string = 'assets/img/house.jpeg';
-
-  @Input() apartment!: Apartment;
 
   reservation: Reservation = {
     arrivalDate: null,
