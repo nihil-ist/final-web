@@ -5,6 +5,7 @@ import { Database, ref, get, child, onValue, query, orderByChild, equalTo } from
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
