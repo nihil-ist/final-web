@@ -27,7 +27,7 @@ export class FirebaseService {
 
   update(key: string, value: any): Promise<void> {
     return this.usersRef.update(key, value);
-  }
+  } 
 
   delete(key: string): Promise<void> {
     return this.usersRef.remove(key);
