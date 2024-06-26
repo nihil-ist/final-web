@@ -1,3 +1,9 @@
 <app-navbar></app-navbar>
 
 <p>dbqueries works!</p>
+
+<div *ngFor="let item of reservations">
+    <div *ngIf="parsePrice(item.price) > 100">
+        {{ item.price }}
+    </div>
+</div>

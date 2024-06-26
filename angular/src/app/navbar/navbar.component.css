@@ -154,3 +154,42 @@
       margin: 0.25rem 0.5rem;
   }
 }
+.mat-button {
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-full-width {
+  position: relative;
+  top: 10px;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.nav-item .btn-group .dropdown-menu {
+  background-color: #333;
+  color: white;
+}
+
+.nav-item .btn-group .dropdown-menu .dropdown-item {
+  color: white;
+}
+
+.nav-item .btn-group .dropdown-menu .dropdown-item:hover {
+  background-color: #555;
+}
+
+.nav-item .btn-group .nav-link.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: -3px; 
+}
+
+.nav-item .btn-group .nav-link.dropdown-toggle img {
+  margin-right: 5px; 
+}
