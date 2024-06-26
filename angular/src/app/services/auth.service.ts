@@ -25,7 +25,8 @@ export class AuthService {
     email: string,
     password: string,
     fullname: string,
-    username: string
+    username: string,
+    phone: number,
   ): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.firebaseAuth,
@@ -41,6 +42,7 @@ export class AuthService {
           email: user.email,
           fullname: fullname,
           username: username,
+          phone: phone
         });
       } else {
         throw new Error('User creation failed.');

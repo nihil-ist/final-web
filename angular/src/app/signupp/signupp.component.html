@@ -23,8 +23,13 @@
             <label class="form-label text-white" for="email">email</label>
         </div>
 
+        <div class="form-floating mb-5">
+            <input id="phone" placeholder="phone" class="form-control custom-border" type="number" tabindex="3" name="phone" required autofocus formControlName="phone" min="1000000000" max="9999999999">
+            <label class="form-label text-white" for="phone">phone</label>
+        </div>
+
         <div class="form-floating">
-            <input id="password" class="form-control custom-border" placeholder="contraseña" type="password" tabindex="3" name="password" required formControlName="password">
+            <input id="password" class="form-control custom-border" placeholder="contraseña" type="password" tabindex="1" name="password" required formControlName="password">
             <label class="form-label text-white" for="password">password</label>
         </div>
         <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="error-message mt-2">
@@ -49,7 +54,7 @@
 
         }
         <div class="text-center my-5">
-            <button [disabled]="!form.valid" id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow">sign up</button>
+            <button [disabled]="!form.valid" id="contactus-submit" type="submit" data-submit="...Sending" mat-raised-button color="primary" class="shadow" >sign up</button>
         </div>  
 
           <!-- <button  type="submit"  id="contactus-submit" data-submit="...Sending">Registro</button> -->

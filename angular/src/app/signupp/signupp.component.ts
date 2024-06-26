@@ -27,11 +27,12 @@ export class SignuppComponent {
   errorMessage: string | null = null;
 
   form: FormGroup = this.fb.group({
-    email: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     fullname: ['', Validators.required],
     username: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
   }, { validators: passwordMismatchValidator });
 
   onSubmit(): void {
@@ -43,7 +44,7 @@ export class SignuppComponent {
 
     const rawFrom = this.form.getRawValue();
     this.auth
-      .register(rawFrom.email, rawFrom.password, rawFrom.fullname, rawFrom.username)
+      .register(rawFrom.email, rawFrom.password, rawFrom.fullname, rawFrom.username, rawFrom.phone)
       .subscribe({
         next: () => {
           console.log('User registered successfully');
@@ -61,10 +62,14 @@ export class SignuppComponent {
       this.errorMessage = 'This email address is already in use';
     } else if (error.code === 'auth/weak-password') {
       this.errorMessage = 'Password must be at least 6 characters long';
+    } else if (error.code === 'auth/invalid-email') {
+      this.errorMessage = 'Invalid email address';
     } else {
       this.errorMessage = 'An error ocurred. Please try again.';
     }
     console.error('Error', error);
   }
+
+  
 
 }
