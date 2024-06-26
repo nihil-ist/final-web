@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DbqueriesComponent } from './dbqueries/dbqueries.component';
 import { UserreservationsComponent } from './userreservations/userreservations.component';
 import { SmsLoginComponent } from './sms-login/sms-login.component';
+import { AyudaFAQComponent } from './ayuda-faq/ayuda-faq.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -27,5 +28,6 @@ export const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'database', component: DbqueriesComponent},
     {path: 'myreservations', component: UserreservationsComponent},
+    {path: 'help_faq', component: AyudaFAQComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

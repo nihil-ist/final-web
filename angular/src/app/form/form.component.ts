@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 import { Reservation } from '../models/reservation.model';
 import { map } from 'rxjs';
 import { LoggedService } from '../services/logged.service';
+import { MailService } from '../contact/mail.service';
 
 export interface Tile {
   src: string;
@@ -38,10 +39,11 @@ export interface Tile {
     MatInputModule,
     MatGridListModule,
     SweetAlert2Module,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
+  providers : [MailService]
 })
 export class FormComponent {
   dialog1boolean: boolean = true;
@@ -49,7 +51,7 @@ export class FormComponent {
   result!: string;
   @Input() apartment!: Apartment;
 
-  constructor(private firebase: FirebaseService,private logged:LoggedService) { }
+  constructor(private firebase: FirebaseService,private logged:LoggedService, private mailService:MailService) { }
 
   reservationForm = new FormGroup({
     arrivalDate: new FormControl('', [Validators.required]),
@@ -127,24 +129,31 @@ export class FormComponent {
     this.reservations.push(this.reservation);
     this.splitReservations(); // Update filtered reservations immediately
 
-    //localStorage.setItem('reservations', JSON.stringify(this.reservations));
-
-
-    // Reset form after successful submission (optional)
-    /*this.firebase.create(this.reservation).then(() => {
-      console.log('Created new user successfully!');
-      this.submitted = true;
-    });*/
-    if(this.reservationForm.valid){
+    const data = {
+      arrivalDate:this.reservation.arrivalDate,
+      departureDate:this.reservation.departureDate,
+      arrivalTime:this.reservation.arrivalTime,
+      name:this.reservation.name,
+      phone:this.reservation.phone,
+      email:this.logged.getIsLogged(),
+      price:this.reservation.price,
+      address:this.reservation.address,
+      nights:this.reservation.nights
+    };
+    if(this.reservationForm.valid && this.roomAvailable(this.reservation.arrivalDate, this.reservation.departureDate)){
       this.firebase.create(this.reservation).then(() => {
       console.log('Created new user successfully!');
       this.submitted = true;
       this.showAlertgood(); // Display success alert
+
+      this.mailService.sendCita(data).subscribe(response => {
+      }, error => {
+        console.error('Error:', error);
+      });
     });
     } else {
       this.result = "Make sure the user's data is correct";
     }
-    console.log('after submit');
     this.reservation = {
       arrivalDate: null,
       departureDate: null,
@@ -156,6 +165,7 @@ export class FormComponent {
       address: '',
       nights: 0,
     };
+    
   }
 
   retrieveReservations(): void {
@@ -222,6 +232,21 @@ export class FormComponent {
       }
     }
     return true;
+  }
+
+  roomAvailable(arriveDate: Date, departureDate: Date): boolean {
+    let available = true;
+
+    this.reservations.forEach((reservation) => {
+      if(reservation.address !== this.apartment.address) return;
+
+      if ( (arriveDate >= reservation.arrivalDate && arriveDate <= reservation.departureDate) ||
+          (departureDate >= reservation.arrivalDate && departureDate <= reservation.departureDate) ){
+        available = false;
+      }
+    });
+
+    return available;
   }
 
   //  alerts

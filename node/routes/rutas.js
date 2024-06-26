@@ -54,7 +54,7 @@ router.post('/contactMail',(req,res) =>{
 
 router.post('/citaMail',(req,res) =>{ //ahorita esto no esta funcionando
     res.send({message:"Hola te voy a mandar un correo"});
-    const {subject,useremail,description,emailadmin} = req.body;
+    const {arrivalDate,departureDate,arrivalTime,name,phone,email,price,address,nights} = req.body;
     nodemailer.createTestAccount((err, account) => {
         if (err) {
             console.error('Failed to create a testing account. ' + err.message);
@@ -63,10 +63,15 @@ router.post('/citaMail',(req,res) =>{ //ahorita esto no esta funcionando
     
         console.log(`
             Data received:
-                Subject: ${subject} 
-                Email: ${useremail} 
-                Description or comment: ${description} 
-                Admin email: ${emailadmin}
+                Arrival Date: ${arrivalDate}
+                Departure Date: ${departureDate}
+                Arrival Time: ${arrivalTime}
+                Name: ${name}
+                Phone: ${phone}
+                Email : ${email}
+                Price : ${price}
+                Address : ${address}
+                Nights : ${nights}
         `);
         //configuracion del transporte del correo
         const transporter = nodemailer.createTransport({
@@ -82,10 +87,30 @@ router.post('/citaMail',(req,res) =>{ //ahorita esto no esta funcionando
         //the message that goes from the user
         const message = {
             from: 'theapartmentbnb@gmail.com',
-            to: `${emailadmin}`,
-            subject: `${subject}`,
-            text: `${useremail} sent to us a message, their message is the following: ${description}`,
-            html: `<p>${useremail} sent to us a message, their message is the following: ${description}</p>`
+            to: `${email}`,
+            subject: `Summary of your reservation`,
+            text: `Thank you for putting your trust in us, here is your reservation information:
+                    Your arrival date: ${arrivalDate} 
+                    Your departure date: ${departureDate}
+                    Your arrival time (the day when you arrive): ${arrivalTime}
+                    Name of the person that did the reservation: ${name}
+                    Phone of the person that did the reservation:: ${phone}
+                    Email of the person that did the reservation:: ${email}
+                    Total price: ${price}
+                    Address of the place the reservation was done: ${address}
+                    Nights the person is going to spend in: ${nights}`,
+            html: `<p>
+                        Thank you for putting your trust in us, here is your reservation information:<br>
+                        Your arrival date: ${arrivalDate}<br>
+                        Your departure date: ${departureDate}<br>
+                        Your arrival time (the day when you arrive): ${arrivalTime}<br>
+                        Name of the person that did the reservation: ${name}<br>
+                        Phone of the person that did the reservation:: ${phone}<br>
+                        Email of the person that did the reservation:: ${email}<br>
+                        Total price: ${price}<br>
+                        Address of the place the reservation was done: ${address}<br>
+                        Nights the person is going to spend in: ${nights}
+                    </p>`
         };
         
         transporter.sendMail(message, (err, info) => {
