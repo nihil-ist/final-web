@@ -1,0 +1,8 @@
+table, td, tr {
+    border-bottom: 1px solid #f44336;
+    background: none !important;
+}
+
+th {
+    background-color: #f44336;
+}

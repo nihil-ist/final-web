@@ -1,1 +1,58 @@
-<p>userreservations works!</p>
+<app-navbar></app-navbar>
+
+<div class="paddingx my-5">
+    <h1 class="mb-5">my reservations <small>{{logged.getIsLogged()}}</small></h1>
+
+    <!-- <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Address</th>
+                <th scope="col">Arrival Date</th>
+                <th scope="col">Departure Date</th>
+                <th scope="col">Nights</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of reservations">
+                <ng-container *ngIf="item.email == logged.getIsLogged()">
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.arrivalDate }}</td>
+                    <td>{{ item.departureDate }}</td>
+                    <td>{{ item.nights }}</td>
+                    <td>{{ item.arrivalTime }}</td>
+                    <td>{{ item.price }}</td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <div class="list row">
+        <div class="col-md-6">
+          <h2 class="mb-3">reservation list</h2>
+          <ul class="list-group">
+
+            @for (item of reservations; track item.key; let i = $index ) {
+                @if (item.email == logged.getIsLogged()) {
+                    <li class="list-group-item" [class.active]="i == currentIndex" (click)="setActiveUser(item, i)">
+                        {{ item.address }}
+                    
+                </li>  
+                }         
+            }
+
+          </ul>
+      
+        </div>
+        <div class="col-md-6">
+            @if (currentReservation) {
+            <div>
+              <app-reservations-details (refreshList)="refreshList()" [reservation]="currentReservation"></app-reservations-details>
+            </div>
+            } 
+          </div>
+      </div>
+
+
+</div>

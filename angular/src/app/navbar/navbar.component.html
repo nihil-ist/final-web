@@ -1,6 +1,6 @@
 
 <div class="sticky-top" style="background-color: #2d2a2e;">
-    <mat-toolbar color="primary" style=" background-color: #f44336; border-top-left-radius: 25px; border-top-right-radius: 25px;" class="shadow-lg"> 
+    <mat-toolbar color="primary" style=" background-color: #f44336; border-top-left-radius: 25px; border-top-right-radius: 25px;" class="shadow-lg nav-container"> 
         &nbsp;&nbsp;
         <div class="pointer" [routerLink]="['/home']" routerLinkActive="router-link-active">
             <img src="assets/img/logo.png" alt="" width="50">
@@ -8,6 +8,11 @@
             <span>the apartment</span>  
         </div>
         
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+          <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
           @if (logged.getIsLogged()=='theapartmentbnb@gmail.com') {
             <!-- opciones para admin -->
           }
@@ -55,5 +60,6 @@
                 </ul>
             </div>
         </li>
+      </div>
     </mat-toolbar>
 </div>
