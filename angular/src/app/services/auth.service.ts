@@ -60,6 +60,10 @@ export class AuthService {
     // Login logic here
   }
 
+  logout(): Observable<void> {
+    const promise = this.firebaseAuth.signOut().then(() => {});
+    return from(promise);
+  }
   private confirmationSMS: ConfirmationResult | undefined;
 
   loginWithSms(
