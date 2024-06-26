@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 
+<!-- @if (){} -->
 <div class="paddingx my-5">
     <div class="backgroundd shadow-lg">
-        <div id="recaptcha-container" style="margin-left: 20px;"></div>
-
+        
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <h1 class="fw-bold my-5">SMS Sign in</h1>
             <div class="form-floating mb-5">
@@ -14,6 +14,7 @@
                 <button type="submit" id="contactus-submit" class="btn btn-dark" [disabled]="!form.valid" style="background-color: #F44336; color: white; border: none;">Enviar mensaje</button>
             </div>
         </form>
+        <div id="recaptcha-container" style="margin-top: 30px;"></div>
     </div>
 </div>
 

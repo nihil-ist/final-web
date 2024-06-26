@@ -55,7 +55,8 @@ export class SmsLoginComponent {
     SMScode: ['', Validators.required],
   });
   
-  confirmSMS: boolean = false; 
+  confirmSMS: boolean = false;
+  
   onSubmit() {
     console.log('Form submitted');
     if (this.form.valid) {
