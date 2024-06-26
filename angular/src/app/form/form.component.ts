@@ -1,10 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Input } from '@angular/core';
 import { Apartment } from '../interfaces/apartment';
 import { FirebaseService } from '../services/firebase-service.service';
-import {MatDialogActions,MatDialogClose,MatDialogContent,MatDialogModule,MatDialogTitle} from '@angular/material/dialog';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -43,7 +55,7 @@ export interface Tile {
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
-  providers : [MailService]
+  providers: [MailService],
 })
 export class FormComponent {
   dialog1boolean: boolean = true;
@@ -51,7 +63,11 @@ export class FormComponent {
   result!: string;
   @Input() apartment!: Apartment;
 
-  constructor(private firebase: FirebaseService,private logged:LoggedService, private mailService:MailService) { }
+  constructor(
+    private firebase: FirebaseService,
+    private logged: LoggedService,
+    private mailService: MailService
+  ) {}
 
   reservationForm = new FormGroup({
     arrivalDate: new FormControl('', [Validators.required]),
@@ -59,7 +75,7 @@ export class FormComponent {
     arrivalTime: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    confirmation: new FormControl('', [Validators.required])
+    confirmation: new FormControl('', [Validators.required]),
   });
 
   tiles: Tile[] = [
@@ -91,6 +107,7 @@ export class FormComponent {
   dialog: any;
   ngOnInit() {
     this.retrieveReservations();
+   
     if (this.reservations) {
       this.splitReservations();
     }
@@ -126,33 +143,55 @@ export class FormComponent {
     this.reservation.address = this.apartment.address;
     this.reservation.price = this.apartment.price;
     this.reservation.email = this.logged.getIsLogged();
-    this.reservations.push(this.reservation);
-    this.splitReservations(); // Update filtered reservations immediately
+
 
     const data = {
-      arrivalDate:this.reservation.arrivalDate,
-      departureDate:this.reservation.departureDate,
-      arrivalTime:this.reservation.arrivalTime,
-      name:this.reservation.name,
-      phone:this.reservation.phone,
-      email:this.logged.getIsLogged(),
-      price:this.reservation.price,
-      address:this.reservation.address,
-      nights:this.reservation.nights
+      arrivalDate: this.reservation.arrivalDate,
+      departureDate: this.reservation.departureDate,
+      arrivalTime: this.reservation.arrivalTime,
+      name: this.reservation.name,
+      phone: this.reservation.phone,
+      email: this.logged.getIsLogged(),
+      price: this.reservation.price,
+      address: this.reservation.address,
+      nights: this.reservation.nights,
     };
-    if(this.reservationForm.valid){
+    
+    let isAvailable = this.isRoomAvailable(data);
+   
+    if (this.reservationForm.valid && isAvailable) {
+      //  If EVERYTHING is valid, then we can submit the form
+      this.reservations.push(this.reservation);
+      this.splitReservations(); // Update filtered reservations immediately
+
+
       this.firebase.create(this.reservation).then(() => {
         console.log('Created new user successfully!');
         this.submitted = true;
         this.showAlertgood(); // Display success alert
-  
-        this.mailService.sendCita(data).subscribe(response => {
-        }, error => {
-          console.error('Error:', error);
-        });
+
+        this.mailService.sendCita(data).subscribe(
+          (response) => {},
+          (error) => {
+            console.error('Error:', error);
+          }
+        );
       });
     } else {
-      this.result = "Make sure the user's data is correct";
+     
+      if (!isAvailable) {
+        Swal.fire({
+          title: "We're sorry :(",
+          text: 'This range of date is already reserved, choose another dates.',
+          icon: 'error', // You can use other icons like 'info', 'warning', 'error'
+        });
+      } else {
+        Swal.fire({
+          title: "We're sorry :(",
+          text: 'Please fill in all the required fields.',
+          icon: 'error', // You can use other icons like 'info', 'warning', 'error'
+        });
+      }
     }
     console.log('after submit');
     this.reservation = {
@@ -169,27 +208,29 @@ export class FormComponent {
   }
 
   retrieveReservations(): void {
-    this.firebase.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+    this.firebase
+      .getAll()
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
         )
       )
-    ).subscribe(data => {
-      this.reservations = data;
-    });
+      .subscribe((data) => {
+        this.reservations = data;
+      });
   }
-  
-  
 
   saveDate(event: any) {
     const selectedDate = new Date(event.target.value);
     const currentDate = new Date();
+   
     if (selectedDate < currentDate) {
       this.showAlertpassed();
       event.target.value = '';
     } else {
       const isDateAvailable = this.isDateAvailable(selectedDate);
+     
       if (!isDateAvailable) {
         this.showAlertalready();
         event.target.value = '';
@@ -204,13 +245,16 @@ export class FormComponent {
     const arrivalDate = this.reservation.arrivalDate;
     const currentDate = new Date();
 
+   
     if (arrivalDate && departureDate <= arrivalDate) {
       this.showAlertbefore();
       event.target.value = '';
-    } else if(departureDate < currentDate){
+    } else
+     if (departureDate < currentDate) {
       this.showAlertpassed();
-    } else{
+    } else {
       this.reservation.departureDate = departureDate;
+     
       if (arrivalDate) {
         this.reservation.nights = this.calculateNights(
           arrivalDate,
@@ -222,6 +266,7 @@ export class FormComponent {
 
   isDateAvailable(selectedDate: Date): boolean {
     for (const reservation of this.reservations) {
+     
       if (
         reservation.arrivalDate &&
         reservation.departureDate &&
@@ -234,6 +279,28 @@ export class FormComponent {
     return true;
   }
 
+  isRoomAvailable(data: Reservation): boolean {
+    let isAvailable = true;
+
+    
+    this.reservations.forEach((reservation) => {
+     
+      if (data.address == reservation.address) {
+       
+        if (
+          (data.arrivalDate >= reservation.arrivalDate &&
+            data.arrivalDate <= reservation.departureDate) ||
+          (data.departureDate >= reservation.arrivalDate &&
+            data.departureDate <= reservation.departureDate)
+        ) {
+          console.log('Room is not available, occupeid by:', reservation);          
+          isAvailable = false;
+        }
+      }
+    });
+
+    return isAvailable;
+  }
   //  alerts
 
   showAlertgood() {
@@ -264,5 +331,4 @@ export class FormComponent {
       icon: 'error', // You can use other icons like 'info', 'warning', 'error'
     });
   }
-  
 }
