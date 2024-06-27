@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { passwordMismatchValidator } from '../password-mismatch.validator';
+import { timer } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signupp',
@@ -21,6 +23,8 @@ import { passwordMismatchValidator } from '../password-mismatch.validator';
   styleUrl: './signupp.component.css',
 })
 export class SignuppComponent {
+  public loading = false;
+
 // [x: string]: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
@@ -43,12 +47,24 @@ export class SignuppComponent {
     }
 
     const rawFrom = this.form.getRawValue();
+    this.loading = true;
+
     this.auth
       .register(rawFrom.email, rawFrom.password, rawFrom.fullname, rawFrom.username, rawFrom.phone)
       .subscribe({
         next: () => {
-          console.log('User registered successfully');
-          this.router.navigate(['/signin']);
+          timer(1000).subscribe(() => {
+            this.loading = false;
+            Swal.fire({
+              title: 'Success!',
+              text: 'You have successfully signed up!',
+              icon: 'success',
+              confirmButtonText: 'Ok',
+            });
+            console.log('User registered successfully');
+            this.router.navigate(['/signin']);
+          });
+          
         },
         error: (err) => {
           this.handleError(err);
